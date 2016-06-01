@@ -1,4 +1,6 @@
-﻿using Azure.Mobile;
+﻿using System.Threading.Tasks;
+using Azure.Mobile;
+using Azure.Mobile.Utils;
 using FormsSample.DataStores;
 using FormsSample.Models;
 using Xamarin.Forms;
@@ -7,11 +9,20 @@ namespace FormsSample
 {
     public partial class App : Application
     {
+        EasyMobileServiceClient client;
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Pages.ToDoListPage());
+            client = new EasyMobileServiceClient("http://xamarin-todo-sample.azurewebsites.net");
+            RegisterTables();
+
+            MainPage = new NavigationPage(new Pages.ToDoListPage(client));
+        }
+
+        async void RegisterTables()
+        {
+            await client.RegisterTable<ToDo, ToDoStore>();
         }
 
         protected override void OnStart()

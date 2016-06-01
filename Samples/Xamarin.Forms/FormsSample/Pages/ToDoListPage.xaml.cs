@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Azure.Mobile;
 using Xamarin.Forms;
 
 namespace FormsSample.Pages
 {
     public partial class ToDoListPage : ContentPage
     {
-        public ToDoListPage()
+        public ToDoListPage(EasyMobileServiceClient client)
         {
             InitializeComponent();
-
-            BindingContext = new ViewModels.ToDoViewModel();
+            BindingContext = new ViewModels.ToDoViewModel(client);
         }
     }
 }

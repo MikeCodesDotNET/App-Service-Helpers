@@ -5,6 +5,8 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
+using Microsoft.WindowsAzure;
+
 namespace FormsSample.iOS
 {
     [Register("AppDelegate")]
@@ -15,6 +17,9 @@ namespace FormsSample.iOS
             global::Xamarin.Forms.Forms.Init();
 
             LoadApplication(new App());
+
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+            SQLitePCL.CurrentPlatform.Init();
 
             return base.FinishedLaunching(app, options);
         }

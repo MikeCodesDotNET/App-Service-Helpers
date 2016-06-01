@@ -13,7 +13,7 @@ namespace FormsSample.ViewModels
 {
     public class ToDoViewModel : BaseFormsViewModel<ToDo>
     {
-        public ToDoViewModel()
+        public ToDoViewModel(EasyMobileServiceClient client) : base(client)
         {
             Title = "ToDo";
         }

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 using Azure.Mobile.Abstractions;
 using Azure.Mobile.Models;
-using Azure.Mobile.Utils;
 
 using Xamarin.Forms;
 
@@ -17,9 +16,9 @@ namespace Azure.Mobile.Forms
         EasyMobileServiceClient client;
         ITableDataStore<T> table;
 
-        public BaseFormsViewModel()
+        public BaseFormsViewModel(EasyMobileServiceClient client)
         {
-            client = ServiceLocator.Instance.Resolve<EasyMobileServiceClient>();
+            this.client = client;
             table = client.Table<T>();
         }
 
