@@ -12,21 +12,19 @@ namespace Azure.Mobile.Tables
 {
     public class BaseTableDataStore<T> : ITableDataStore<T> where T : Models.EntityData
     {
-        IMobileServiceClient serviceClient;
+		IEasyMobileServiceClient serviceClient;
         string identifier = typeof(T).Name;
 
         IMobileServiceSyncTable<T> table;
         protected IMobileServiceSyncTable<T> Table
         {
-            get { return table ?? (table = serviceClient.GetSyncTable<T>()); }
-
+			get { return table ?? (table = serviceClient.MobileService.GetSyncTable<T>()); }
         }
-
 
         public virtual void Initialize()
         {
             if (serviceClient == null)
-                serviceClient = ServiceLocator.Instance.Resolve<IMobileServiceClient>();
+				serviceClient = ServiceLocator.Instance.Resolve<IEasyMobileServiceClient>();
         }
 
         public async virtual Task Sync()
@@ -37,9 +35,8 @@ namespace Azure.Mobile.Tables
 
             try
             {
-                await serviceClient.SyncContext.PushAsync();
-                await table.PullAsync($"all{identifier}", table.CreateQuery());
-                await table.PullAsync($"all{identifier}", Table.CreateQuery());
+				await serviceClient.MobileService.SyncContext.PushAsync();
+                await Table.PullAsync($"all{identifier}", Table.CreateQuery());
             }
             catch (Exception ex)
             {
