@@ -22,6 +22,7 @@ namespace Azure.Mobile.Tables
 
         }
 
+
         public virtual void Initialize()
         {
             if (serviceClient == null)

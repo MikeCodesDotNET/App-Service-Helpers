@@ -35,6 +35,8 @@
     <Compile Include="Models\EntityData.cs" />
     <Compile Include="Tables\BaseTableDataStore.cs" />
     <Compile Include="Abstractions\ITableDataStore.cs" />
+    <Compile Include="EasyMobileServiceClient.cs" />
+    <Compile Include="Models\Blob.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />
