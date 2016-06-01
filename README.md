@@ -6,7 +6,7 @@ Most mobile apps are what we consider connected apps (they have some form of bac
 * Pierce: [PierceBoggan](https://twitter.com/pierceboggan)
 
 ## Build Status 
-[Unknown] (TODO - Add CI)
+[![Build Status](https://www.bitrise.io/app/0cf5c8b31d7f3357.svg?token=-Eq6S4qlUcM-GtWwdOpY0Q&branch=master)](https://www.bitrise.io/app/0cf5c8b31d7f3357)
 
 ## What is it? 
 
