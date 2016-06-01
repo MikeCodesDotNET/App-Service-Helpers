@@ -26,4 +26,4 @@ We've built a couple of samples to get you started. These naturally target Xamar
 * Xamarin.Mac 
 
 ### License
-Licensed under MIT see License file. Each plugin licensed under parent license unless stated in its readme file.
+Licensed under MIT see License file.
