@@ -3,23 +3,21 @@ using Azure.Mobile;
 
 using FormsSample.Models;
 using FormsSample.DataStores;
+using Xamarin.Forms;
+using System.Threading.Tasks;
+using Azure.Mobile.Abstractions;
+using System.Collections.ObjectModel;
+using Azure.Mobile.Forms;
 
 namespace FormsSample.ViewModels
 {
-    public class ToDoViewModel 
+    public class ToDoViewModel : BaseFormsViewModel<ToDo>
     {
-        public EasyMobileServiceClient ServiceClient;
-
         public ToDoViewModel()
         {
-            ServiceClient = new EasyMobileServiceClient("");
-            Init();
+            Title = "ToDo";
         }
 
-        public async void Init()
-        {
-           await ServiceClient.RegisterTable<ToDo, ToDoStore>();
-        }
     }
 }
 

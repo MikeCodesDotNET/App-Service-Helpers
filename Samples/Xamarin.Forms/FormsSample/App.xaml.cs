@@ -11,7 +11,7 @@ namespace FormsSample
         {
             InitializeComponent();
 
-            MainPage = new FormsSamplePage();
+            MainPage = new NavigationPage(new Pages.ToDoListPage());
         }
 
         protected override void OnStart()
