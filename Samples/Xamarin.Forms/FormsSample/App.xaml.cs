@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms;
+﻿using Azure.Mobile;
+using FormsSample.DataStores;
+using FormsSample.Models;
+using Xamarin.Forms;
 
 namespace FormsSample
 {
