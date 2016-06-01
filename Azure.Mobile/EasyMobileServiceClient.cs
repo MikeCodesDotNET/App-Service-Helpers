@@ -10,26 +10,22 @@ using Azure.Mobile.Utils;
 
 namespace Azure.Mobile
 {
-	public class EasyMobileServiceClient
+	public class EasyMobileServiceClient : IEasyMobileServiceClient
 	{
 		bool initialized;
-		string url;
-		MobileServiceClient MobileService;
 		MobileServiceSQLiteStore store;
 
-		public EasyMobileServiceClient(string url)
-		{
-			this.url = url;
-		}
+		public MobileServiceClient MobileService { get; set; }
+		public string Url { get { return "http://easymobileapps.azurewebsites.net/"; } }
 
-		async Task Initialize()
+		public void Initialize()
 		{
 			if (initialized)
 				return;
-			
+
 			store = new MobileServiceSQLiteStore("app.db");
 
-			MobileService = new MobileServiceClient(url, null)
+			MobileService = new MobileServiceClient(Url, null)
 			{
 				SerializerSettings = new MobileServiceJsonSerializerSettings()
 				{
@@ -37,21 +33,23 @@ namespace Azure.Mobile
 				}
 			};
 
-			await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
+			initialized = true;
 		}
 
-		public async Task RegisterTable<A, B>() where A : EntityData where B : BaseTableDataStore<A>, new()
+		public void RegisterTable<A, B>() where A : EntityData where B : BaseTableDataStore<A>, new()
 		{
-			await Initialize();
-
-			ServiceLocator.Instance.Add<ITableDataStore<A>, B>();
-
 			store.DefineTable<A>();
+			ServiceLocator.Instance.Add<ITableDataStore<A>, B>();
 		}
 
 		public ITableDataStore<T> Table<T>() where T : EntityData
 		{
 			return ServiceLocator.Instance.Resolve<ITableDataStore<T>>();
+		}
+
+		public async Task FinalizeSchema()
+		{
+			await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
 		}
 	}
 }
