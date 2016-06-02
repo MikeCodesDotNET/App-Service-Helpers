@@ -16,18 +16,21 @@ namespace Azure.Mobile
 		MobileServiceSQLiteStore store;
 
 		public MobileServiceClient MobileService { get; set; }
-
-        public EasyMobileServiceClient(string url)
-        {
-            Url = url;
-        }
-
         public string Url { get; private set; }
 
-		public void Initialize()
+		public static IEasyMobileServiceClient Create()
+		{
+			ServiceLocator.Instance.Add<IEasyMobileServiceClient, EasyMobileServiceClient>();
+
+			return ServiceLocator.Instance.Resolve<IEasyMobileServiceClient>();
+		}
+
+		public void Initialize(string url)
 		{
 			if (initialized)
 				return;
+
+			Url = url;
 
 			store = new MobileServiceSQLiteStore("app.db");
 
