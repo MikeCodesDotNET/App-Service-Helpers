@@ -13,10 +13,10 @@ namespace Azure.Mobile.Forms
 {
     public class BaseFormsViewModel<T> where T : EntityData
     {
-        EasyMobileServiceClient client;
+        IEasyMobileServiceClient client;
         ITableDataStore<T> table;
 
-        public BaseFormsViewModel(EasyMobileServiceClient client)
+        public BaseFormsViewModel(IEasyMobileServiceClient client)
         {
             this.client = client;
             table = client.Table<T>();
