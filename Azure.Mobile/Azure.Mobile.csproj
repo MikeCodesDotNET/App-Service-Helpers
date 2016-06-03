@@ -37,6 +37,7 @@
     <Compile Include="Abstractions\ITableDataStore.cs" />
     <Compile Include="EasyMobileServiceClient.cs" />
     <Compile Include="Abstractions\IEasyMobileServiceClient.cs" />
+    <Compile Include="Storage\Storage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utils\" />
@@ -44,6 +45,7 @@
     <Folder Include="Tables\" />
     <Folder Include="Abstractions\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -84,6 +86,20 @@
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Mobile.SQLiteStore">
       <HintPath>..\packages\Microsoft.Azure.Mobile.Client.SQLiteStore.2.0.1\lib\portable-win+net45+wp8+wpa81+monotouch+monoandroid\Microsoft.WindowsAzure.Mobile.SQLiteStore.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.Data.Edm">
+      <HintPath>References\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData">
+      <HintPath>References\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage">
+      <HintPath>References\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial">
+      <HintPath>References\System.Spatial.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
