@@ -44,7 +44,6 @@
     <Folder Include="Models\" />
     <Folder Include="Tables\" />
     <Folder Include="Abstractions\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>
