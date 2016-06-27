@@ -8,15 +8,15 @@ namespace Azure.Mobile.Abstractions
     {
         void Initialize();
 
-        Task<IEnumerable<T>> GetItems();
+        Task<IEnumerable<T>> GetItemsAsync();
 
-        Task<T> GetItem(string id);
+        Task<T> GetItemAsync(string id);
 
-        Task<bool> Add(T item);
+        Task<bool> AddAsync(T item);
 
-        Task<bool> Update(T item);
+        Task<bool> UpdateAsync(T item);
 
-        Task<bool> Delete(T item);
+        Task<bool> DeleteAsync(T item);
 
         Task Sync();
 

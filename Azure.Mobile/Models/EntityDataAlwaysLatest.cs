@@ -4,7 +4,7 @@ using System;
 
 namespace Azure.Mobile.Models
 {
-    public class EntityData
+    public class EntityDataAlwaysLatest
     {
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }

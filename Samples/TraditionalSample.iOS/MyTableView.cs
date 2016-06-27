@@ -31,7 +31,7 @@ namespace TraditionalSample.iOS
 
             dataStore = client.Table<ToDo>();
             await dataStore.Sync();
-            items = await dataStore.GetItems();
+            items = await dataStore.GetItemsAsync();
         }
 
         public override nint NumberOfSections(UITableView tableView)

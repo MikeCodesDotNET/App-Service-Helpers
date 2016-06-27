@@ -38,17 +38,17 @@ namespace Azure.Mobile.Forms
 
         public async Task AddItemAsnyc(T item)
         {
-           await table.Add(item); 
+            await table.AddAsync(item);
         }
 
         public async Task DeleteItemAsnyc(T item)
         {
-            await table.Delete(item);
+            await table.DeleteAsync(item);
         }
 
         public async Task UpdateItemAsnyc(T item)
         {
-            await table.Update(item);
+            await table.UpdateAsync(item);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Azure.Mobile.Forms
 
             try
             {
-                var _items = await table.GetItems();
+                var _items = await table.GetItemsAsync();
                 Items.Clear();
                 foreach (var item in _items)
                 {
