@@ -40,6 +40,7 @@
     <Compile Include="EasyMobileServiceClient.cs" />
     <Compile Include="Abstractions\IEasyMobileServiceClient.cs" />
     <Compile Include="Storage\Storage.cs" />
+    <Compile Include="Models\EntityDataAlwaysLatest.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
