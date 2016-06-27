@@ -10,7 +10,12 @@ using Azure.Mobile.Utils;
 
 namespace Azure.Mobile.Tables
 {
-    public class BaseTableDataStore<T> : ITableDataStore<T> where T : Models.EntityData
+	public abstract class BaseTableDataStore
+	{
+
+	}
+
+	public class BaseTableDataStore<T> : BaseTableDataStore, ITableDataStore<T> where T : Models.EntityData
     {
 		IEasyMobileServiceClient serviceClient;
         string identifier = typeof(T).Name;
@@ -26,6 +31,11 @@ namespace Azure.Mobile.Tables
             if (serviceClient == null)
 				serviceClient = ServiceLocator.Instance.Resolve<IEasyMobileServiceClient>();
         }
+
+		public virtual void Initialize(IEasyMobileServiceClient client)
+		{
+			serviceClient = client;
+		}
 
         public async virtual Task Sync()
         {

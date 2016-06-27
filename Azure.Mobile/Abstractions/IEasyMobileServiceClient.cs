@@ -15,8 +15,8 @@ namespace Azure.Mobile.Abstractions
 	{
 		MobileServiceClient MobileService { get; set; }
 
-		void Initialize();
-		void RegisterTable<A, B>() where A : EntityData where B : BaseTableDataStore<A>, new();
+		void Initialize(string url);
+		void RegisterTable<A>() where A : EntityData;
 		ITableDataStore<T> Table<T>() where T : EntityData;
 		Task FinalizeSchema();
 	}
