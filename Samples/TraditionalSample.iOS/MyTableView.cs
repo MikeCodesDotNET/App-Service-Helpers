@@ -42,7 +42,7 @@ namespace TraditionalSample.iOS
         public override nint RowsInSection(UITableView tableView, nint section)
         {
             var count = dataStore.Count();
-            return (nint)count;
+            return count;
         }
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)

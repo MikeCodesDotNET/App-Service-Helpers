@@ -41,6 +41,7 @@
     <Compile Include="Abstractions\IEasyMobileServiceClient.cs" />
     <Compile Include="Storage\Storage.cs" />
     <Compile Include="Models\EntityDataAlwaysLatest.cs" />
+    <Compile Include="Helpers\ObservableRangeCollection.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -107,6 +108,9 @@
     <Reference Include="System.Spatial">
       <HintPath>References\System.Spatial.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
