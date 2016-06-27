@@ -55,7 +55,7 @@ namespace Azure.Mobile.Tables
             }
         }
 
-        public async virtual Task<bool> Add(T item)
+        public async virtual Task<bool> AddAsync(T item)
         {
             Initialize();
 
@@ -65,7 +65,7 @@ namespace Azure.Mobile.Tables
             return true;
         }
 
-        public async virtual Task<bool> Update(T item)
+        public async virtual Task<bool> UpdateAsync(T item)
         {
             Initialize();
 
@@ -75,7 +75,7 @@ namespace Azure.Mobile.Tables
             return true;
         }
 
-        public async virtual Task<bool> Delete(T item)
+        public async virtual Task<bool> DeleteAsync(T item)
         {
             Initialize();
 
@@ -85,7 +85,7 @@ namespace Azure.Mobile.Tables
             return true;
         }
 
-        public async virtual Task<T> GetItem(string id)
+        public async virtual Task<T> GetItemAsync(string id)
         {
             await Sync();
 
@@ -97,7 +97,7 @@ namespace Azure.Mobile.Tables
             return items[0];
         }
 
-        public async virtual Task<IEnumerable<T>> GetItems()
+        public async virtual Task<IEnumerable<T>> GetItemsAsync()
         {
             Initialize();
             await Sync();
