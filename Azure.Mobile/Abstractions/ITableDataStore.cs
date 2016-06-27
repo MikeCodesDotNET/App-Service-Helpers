@@ -19,6 +19,8 @@ namespace Azure.Mobile.Abstractions
         Task<bool> Delete(T item);
 
         Task Sync();
+
+        int Count();
     }
 }
 

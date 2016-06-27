@@ -1,22 +1,45 @@
 ﻿using System;
-using Azure.Mobile;
-
-using FormsSample.Models;
-using FormsSample.DataStores;
-using Xamarin.Forms;
-using System.Threading.Tasks;
 using Azure.Mobile.Abstractions;
-using System.Collections.ObjectModel;
-using Azure.Mobile.Forms;
 
 namespace FormsSample.ViewModels
 {
-    public class ToDoViewModel : BaseFormsViewModel<ToDo>
+    public class ToDoViewModel : Azure.Mobile.Forms.BaseFormsViewModel<Models.ToDo>
     {
-        public ToDoViewModel(IEasyMobileServiceClient client) : base (client)
+        IEasyMobileServiceClient client;
+        Models.ToDo todo;
+
+        public ToDoViewModel(IEasyMobileServiceClient client, Models.ToDo todo) : base (client)
         {
-            
+            this.client = client;
+            this.todo = todo;
         }
+
+        public string Text
+        {
+            get
+            {
+                return todo.Text;   
+            }
+            set
+            {
+                todo.Text = value;
+            }
+        }
+
+        public bool Complete
+        {
+            get
+            {
+                return todo.Completed;
+            }
+            set
+            {
+                todo.Completed = value;
+            }
+        }
+
+
+
     }
 }
 

@@ -47,6 +47,7 @@ namespace Azure.Mobile.Tables
             {
 				await serviceClient.MobileService.SyncContext.PushAsync();
                 await Table.PullAsync($"all{identifier}", Table.CreateQuery());
+
             }
             catch (Exception ex)
             {
@@ -102,6 +103,15 @@ namespace Azure.Mobile.Tables
             await Sync();
 
             return await table.ToEnumerableAsync();
+        }
+
+        public virtual int Count()
+        {
+            var query = Table.CreateQuery();
+            query.IncludeTotalCount();
+
+            var results = query.ToListAsync().Result;
+            return results.Count;
         }
     }
 }
