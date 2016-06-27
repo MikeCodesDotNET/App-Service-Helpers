@@ -36,17 +36,17 @@ namespace Azure.Mobile.Forms
             }
         }
 
-        public async Task AddItem(T item)
+        public async Task AddItemAsnyc(T item)
         {
            await table.Add(item); 
         }
 
-        public async Task DeleteItem(T item)
+        public async Task DeleteItemAsnyc(T item)
         {
             await table.Delete(item);
         }
 
-        public async Task UpdateItem(T item)
+        public async Task UpdateItemAsnyc(T item)
         {
             await table.Update(item);
         }
