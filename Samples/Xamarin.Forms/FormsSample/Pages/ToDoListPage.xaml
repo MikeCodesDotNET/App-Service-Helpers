@@ -9,8 +9,7 @@
 					ItemsSource="{Binding Items}" 
 					SelectedItem="{Binding SelectedToDoItem, Mode=TwoWay}"
 					IsPullToRefreshEnabled="True"
-          			RefreshCommand="{Binding RefreshCommand}"
-          			IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+          			RefreshCommand="{Binding RefreshCommand}">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>

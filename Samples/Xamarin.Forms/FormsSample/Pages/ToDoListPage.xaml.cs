@@ -11,7 +11,7 @@ namespace FormsSample.Pages
         public ToDoListPage(IEasyMobileServiceClient client)
         {
             InitializeComponent();
-            BindingContext = new ViewModels.ToDoViewModel(client);
+            BindingContext = new ViewModels.ToDosViewModel(client);
         }
     }
 }

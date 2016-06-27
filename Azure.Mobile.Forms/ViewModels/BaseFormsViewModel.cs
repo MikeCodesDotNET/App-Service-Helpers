@@ -36,6 +36,21 @@ namespace Azure.Mobile.Forms
             }
         }
 
+        public async Task AddItemAsnyc(T item)
+        {
+            await table.AddAsync(item);
+        }
+
+        public async Task DeleteItemAsnyc(T item)
+        {
+            await table.DeleteAsync(item);
+        }
+
+        public async Task UpdateItemAsnyc(T item)
+        {
+            await table.UpdateAsync(item);
+        }
+
         /// <summary>
         /// Refresh the table (pushes and pulls data from Azure)
         /// </summary>
@@ -54,47 +69,18 @@ namespace Azure.Mobile.Forms
 
             try
             {
-                var _items = await table.GetItems();
+                var _items = await table.GetItemsAsync();
                 Items.Clear();
                 foreach (var item in _items)
                 {
                     Items.Add(item);
                 }
+
+                IsBusy = false;
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        Command addNewItemCommand;
-        public Command AddNewItemCommand
-        {
-            get { return addNewItemCommand ?? (addNewItemCommand = new Command(async () => await ExecuteAddNewItemCommand())); }
-        }
-
-        async Task ExecuteAddNewItemCommand()
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-            }
-            finally
-            {
-                IsBusy = false;
             }
         }
 

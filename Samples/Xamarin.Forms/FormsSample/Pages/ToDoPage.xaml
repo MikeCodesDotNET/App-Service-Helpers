@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FormsSample.Pages.ToDoPage">
+<ContentPage.Content>
+		<StackLayout Spacing="10" Padding="10">
+			<Label Text="What should I be doing?"></Label>
+			<Entry Text="{Binding Text}"></Entry>
+			<Label Text="Complete"></Label>
+			<Switch IsToggled="{Binding Complete}"></Switch>
+			<StackLayout VerticalOptions="CenterAndExpand"></StackLayout>
+			<StackLayout Orientation="Vertical" VerticalOptions="End">
+				<Button Text="Save" BackgroundColor="#A6E55E" TextColor="White" Command="{Binding SaveItemCommand}"></Button>
+				<Button Text="Delete" BackgroundColor="#F1836E" TextColor="White" Command="{Binding DeleteItemCommand}"></Button>	 
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
