@@ -10,9 +10,6 @@
 #### AppService.Helpers
 App Service Helpers makes it as easy as possible to add a backend to your mobile application. In just four lines of code, you can create a cloud-connected mobile app with online/offline synchronization and automatic conflict handling, so that your app continues to function even if the user loses network connectivity. App Service Helpers also comes with a preconfigured Xamarin.Forms ViewModel, so that you can bind directly to your data without having to write any additional code.
 
-#### Azure.Mobile.Forms
-The Forms package is an extra download that unlocks a ViewModel base class that allows you to bind from XAML to Azure tables with minimal configuration on your end (just a couple of lines of code). 
-
 ## Getting Started
 ### Add App Service Helpers
 Configuring data access in your mobile apps with App Service Helpers is easy. Simply add the App Service Helpers NuGet, initialize the library, pass in your Azure mobile app’s URL, register a data model as a table, and finalize the schema, as seen below:
@@ -33,8 +30,11 @@ client.RegisterTable<TodoItem>();
 // 4. Finalize the schema for our database. All table registrations must be done before this step.
 client.FinalizeSchema();
 ```
-### Subclass App Service Helpers’ View Model
+#### AppService.Helpers.Forms
+The Forms package is an extra download that unlocks a ViewModel base class that allows you to bind from XAML to Azure tables with minimal configuration on your end (just a couple of lines of code). 
+
 App Service Helpers for Xamarin.Forms includes a preconfigured view model that handles all communication with the EasyMobileServiceClient to help you get started fast. Add the App Service Helpers for Xamarin.Forms NuGet and subclass the BaseAzureViewModel:
+
 ```c#
 using AppServiceHelpers.Forms
  
