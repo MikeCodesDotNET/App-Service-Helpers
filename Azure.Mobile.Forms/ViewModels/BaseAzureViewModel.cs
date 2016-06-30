@@ -16,6 +16,10 @@ namespace Azure.Mobile.Forms
         IEasyMobileServiceClient client;
         ITableDataStore<T> table;
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="T:Azure.Mobile.Forms.BaseAzureViewModel`1"/> class.
+		/// </summary>
+		/// <param name="client">EasyMobileServiceClient for performing table operations.</param>
         public BaseAzureViewModel(IEasyMobileServiceClient client)
         {
             this.client = client;
@@ -36,23 +40,35 @@ namespace Azure.Mobile.Forms
             }
         }
 
+		/// <summary>
+		/// Adds an item to the table.
+		/// </summary>
+		/// <param name="item">The item to add to the table.</param>
         public async Task AddItemAsnyc(T item)
         {
             await table.AddAsync(item);
         }
 
-        public async Task DeleteItemAsnyc(T item)
+		/// <summary>
+		/// Deletes an item from the table.
+		/// </summary>
+		/// <param name="item">The item to delete from the table.</param>
+		public async Task DeleteItemAsnyc(T item)
         {
             await table.DeleteAsync(item);
         }
 
-        public async Task UpdateItemAsnyc(T item)
+		/// <summary>
+		/// Updates an item in the table.
+		/// </summary>
+		/// <param name="item">The item to update in the table.</param>
+		public async Task UpdateItemAsnyc(T item)
         {
             await table.UpdateAsync(item);
         }
 
         /// <summary>
-        /// Refresh the table (pushes and pulls data from Azure)
+        /// Refresh the table, and sychronize data with Azure.
         /// </summary>
         Command refreshCommand;
         public Command RefreshCommand
@@ -88,9 +104,8 @@ namespace Azure.Mobile.Forms
         public const string TitlePropertyName = "Title";
 
         /// <summary>
-        /// Gets or sets the "Title" property
+        /// The title of the page.
         /// </summary>
-        /// <value>The title.</value>
         public string Title
         {
             get { return title; }
@@ -99,7 +114,7 @@ namespace Azure.Mobile.Forms
 
         string subTitle = string.Empty;
         /// <summary>
-        /// Gets or sets the "Subtitle" property
+        /// The subtitle of the page.
         /// </summary>
         public const string SubtitlePropertyName = "Subtitle";
         public string Subtitle
@@ -110,7 +125,7 @@ namespace Azure.Mobile.Forms
 
         string icon = null;
         /// <summary>
-        /// Gets or sets the "Icon" of the viewmodel
+        /// The icon of the page.
         /// </summary>
         public const string IconPropertyName = "Icon";
         public string Icon
@@ -121,7 +136,7 @@ namespace Azure.Mobile.Forms
 
         bool isBusy;
         /// <summary>
-        /// Gets or sets if the view is busy.
+        /// The current state of the view.
         /// </summary>
         public const string IsBusyPropertyName = "IsBusy";
         public bool IsBusy
@@ -132,7 +147,7 @@ namespace Azure.Mobile.Forms
 
         bool canLoadMore = true;
         /// <summary>
-        /// Gets or sets if we can load more.
+        /// Can we load more items?
         /// </summary>
         public const string CanLoadMorePropertyName = "CanLoadMore";
         public bool CanLoadMore
@@ -163,6 +178,10 @@ namespace Azure.Mobile.Forms
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
+		/// <summary>
+		/// An implementation of INotifyPropertyChanged.
+		/// </summary>
+		/// <param name="propertyName">The property name to fire the PropertyChanged event on.</param>
         public void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged == null)
@@ -172,4 +191,3 @@ namespace Azure.Mobile.Forms
         }
     }
 }
-
