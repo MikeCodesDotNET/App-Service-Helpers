@@ -11,7 +11,7 @@ using Azure.Mobile.Forms;
 
 namespace FormsSample.ViewModels
 {
-    public class ToDosViewModel : BaseFormsViewModel<ToDo>
+    public class ToDosViewModel : BaseAzureViewModel<ToDo>
     {
         IEasyMobileServiceClient client;
         public ToDosViewModel(IEasyMobileServiceClient client) : base (client)

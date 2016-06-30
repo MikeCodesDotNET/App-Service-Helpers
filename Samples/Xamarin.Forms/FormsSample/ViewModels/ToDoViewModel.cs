@@ -3,7 +3,7 @@ using Azure.Mobile.Abstractions;
 
 namespace FormsSample.ViewModels
 {
-    public class ToDoViewModel : Azure.Mobile.Forms.BaseFormsViewModel<Models.ToDo>
+    public class ToDoViewModel : Azure.Mobile.Forms.BaseAzureViewModel<Models.ToDo>
     {
         IEasyMobileServiceClient client;
         Models.ToDo todo;

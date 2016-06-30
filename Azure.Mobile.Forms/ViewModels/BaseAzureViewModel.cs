@@ -11,12 +11,12 @@ using Xamarin.Forms;
 
 namespace Azure.Mobile.Forms
 {
-    public class BaseFormsViewModel<T> where T : EntityData
+    public class BaseAzureViewModel<T> where T : EntityData
     {
         IEasyMobileServiceClient client;
         ITableDataStore<T> table;
 
-        public BaseFormsViewModel(IEasyMobileServiceClient client)
+        public BaseAzureViewModel(IEasyMobileServiceClient client)
         {
             this.client = client;
             table = client.Table<T>();
