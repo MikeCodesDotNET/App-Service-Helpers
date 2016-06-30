@@ -1,4 +1,4 @@
-Most mobile apps are what we consider connected apps (they have some form of backend infrastructure). [Pierce](https://github.com/pierceboggan) and I have spent the last few months building multiple Xamarin based apps the consume Azure App Services. During this time we've found ourselves writing the same code over and over which prompted us to put it into an easily consumable package and share on Nuget. 
+ Most mobile apps are what we consider connected apps (they have some form of backend infrastructure). Myself and [Pierce](https://github.com/pierceboggan) have spent the last few months building numerous Xamarin apps that consume Azure App Services. During this time we've found ourselves writing the same code over and over which prompted us to put it into an easily consumable package and share on Nuget. 
 
 ## Follow Us 
 
@@ -7,11 +7,11 @@ Most mobile apps are what we consider connected apps (they have some form of bac
 
 ## What is it? 
 
-#### Azure.Mobile 
-The base Azure.Mobile package contains everything you need as a C# developer to get quickly started with Azure App Service. We've  tried our best to remove any of the complexities of the App Service SDKs and boilerplate code that we're usually forced to write. 
+#### AppService.Helpers
+App Service Helpers makes it as easy as possible to add a backend to your mobile application. In just four lines of code, you can create a cloud-connected mobile app with online/offline synchronization and automatic conflict handling, so that your app continues to function even if the user loses network connectivity. App Service Helpers also comes with a preconfigured Xamarin.Forms ViewModel, so that you can bind directly to your data without having to write any additional code.
 
 #### Azure.Mobile.Forms
-The Forms package is an extra download that depends on Azure.Mobile. The package contains a ViewModel base class implementation which allows you to bind from XAML to Azure tables with minimal configuration on your end (just a couple of lines of code). 
+The Forms package is an extra download that unlocks a ViewModel base class that allows you to bind from XAML to Azure tables with minimal configuration on your end (just a couple of lines of code). 
 
 ## Getting Started
 ### Add App Service Helpers
