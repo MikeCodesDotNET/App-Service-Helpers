@@ -22,6 +22,9 @@ namespace Azure.Mobile
 
 		Dictionary<string, BaseTableDataStore> tables;
 
+		/// <summary>
+		/// Creates a new EasyMobileService client.
+		/// </summary>
 		public static IEasyMobileServiceClient Create()
 		{
 			ServiceLocator.Instance.Add<IEasyMobileServiceClient, EasyMobileServiceClient>();
@@ -29,6 +32,10 @@ namespace Azure.Mobile
 			return ServiceLocator.Instance.Resolve<IEasyMobileServiceClient>();
 		}
 
+		/// <summary>
+		/// Initializes the EasyMobileServiceClient to work with an Azure Mobile App endpoint.
+		/// </summary>
+		/// <param name="url">The url of your Azure Mobile App.</param>
 		public void Initialize(string url)
 		{
 			if (initialized)
@@ -51,6 +58,10 @@ namespace Azure.Mobile
 			initialized = true;
 		}
 
+		/// <summary>
+		/// Register a data model with EasyMobileServiceClient to create a table.
+		/// </summary>
+		/// <typeparam name="A">The data model used to create table schema.</typeparam>
 		public void RegisterTable<A>() where A : EntityData
 		{
 			store.DefineTable<A>();
@@ -60,18 +71,31 @@ namespace Azure.Mobile
 			tables.Add(typeof(A).Name, table);
 		}
 
+		/// <summary>
+		/// Register a custom data store with EasyMobileServiceClient to create a table.
+		/// </summary>
+		/// <returns>The table.</returns>
+		/// <typeparam name="A">The data model used to create table schema.</typeparam>
+		/// <typeparam name="B">A custom implementation of BaseTableDataStore. For default behavior, use RegisterTable<A>.</typeparam>
 		public void RegisterTable<A, B>() where A : EntityData where B : BaseTableDataStore<A>, new()
 		{
 			store.DefineTable<A>();
 			ServiceLocator.Instance.Add<ITableDataStore<A>, B>();
 		}
 
+		/// <summary>
+		/// Creates a backing SQLite database for the tables registered. Tables cannot be registered after FinalizeSchema is called.
+		/// </summary>
 		public async Task FinalizeSchema()
 		{
 			await MobileService.SyncContext.InitializeAsync(store, new MobileServiceSyncHandler());
 		}
 
-		#region Tables
+		/// <summary>
+		/// Fetch a data store for a data model, allowing operations to be done on the table.
+		/// </summary>
+		/// <returns>An ITableDataStore for CRUD operations and syncing.</returns>
+		/// <typeparam name="T">The data model for the table.</typeparam>
 		public ITableDataStore<T> Table<T>() where T : EntityData
 		{
 			var instance = ServiceLocator.Instance.Resolve<ITableDataStore<T>>();
@@ -84,67 +108,6 @@ namespace Azure.Mobile
 				return tables[typeof(T).Name] as BaseTableDataStore<T>;
 			}
 		}
-
-		public async Task Sync<T>(IMobileServiceSyncTable<T> table)
-		{
-			var connected = await Plugin.Connectivity.CrossConnectivity.Current.IsReachable("google.com");
-			if (connected == false)
-				return;
-
-			try
-			{
-				var identifier = typeof(T).Name;
-				await MobileService.SyncContext.PushAsync();
-				await table.PullAsync($"all{identifier}", table.CreateQuery());
-			}
-			catch (Exception ex)
-			{
-				System.Diagnostics.Debug.WriteLine($"Unable to sync items, that is alright as we have offline capabilities: {ex.Message}");
-			}
-		}
-
-		public async Task<bool> Add<T>(IMobileServiceSyncTable<T> table, T item)
-		{
-			await table.InsertAsync(item);
-			await Sync(table);
-
-			return true;
-		}
-
-		public async Task<bool> Update<T>(IMobileServiceSyncTable<T> table, T item)
-		{
-			await table.UpdateAsync(item);
-			await Sync(table);
-
-			return true;
-		}
-
-		public async Task<bool> Delete<T>(IMobileServiceSyncTable<T> table, T item)
-		{
-			await table.DeleteAsync(item);
-			await Sync(table);
-
-			return true;
-		}
-
-		public async Task<T> GetItem<T>(IMobileServiceSyncTable<T> table, string id) where T : EntityData
-		{
-			await Sync(table);
-
-			var items = await table.Where(s => s.Id == id).ToListAsync();
-
-			if (items == null || items.Count == 0)
-				return null;
-			
-			return items[0];
-		}
-
-		public async Task<IEnumerable<T>> GetItems<T>(IMobileServiceSyncTable<T> table)
-		{
-			await Sync(table);
-
-			return await table.ToEnumerableAsync();
-		}
-		#endregion
+		
 	}
 }
