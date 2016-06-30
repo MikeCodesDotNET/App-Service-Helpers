@@ -44,7 +44,7 @@ namespace Azure.Mobile.Forms
 		/// Adds an item to the table.
 		/// </summary>
 		/// <param name="item">The item to add to the table.</param>
-        public async Task AddItemAsnyc(T item)
+		public async Task AddItemAsync(T item)
         {
             await table.AddAsync(item);
         }
@@ -53,7 +53,7 @@ namespace Azure.Mobile.Forms
 		/// Deletes an item from the table.
 		/// </summary>
 		/// <param name="item">The item to delete from the table.</param>
-		public async Task DeleteItemAsnyc(T item)
+		public async Task DeleteItemAsync(T item)
         {
             await table.DeleteAsync(item);
         }
@@ -62,7 +62,7 @@ namespace Azure.Mobile.Forms
 		/// Updates an item in the table.
 		/// </summary>
 		/// <param name="item">The item to update in the table.</param>
-		public async Task UpdateItemAsnyc(T item)
+		public async Task UpdateItemAsync(T item)
         {
             await table.UpdateAsync(item);
         }
