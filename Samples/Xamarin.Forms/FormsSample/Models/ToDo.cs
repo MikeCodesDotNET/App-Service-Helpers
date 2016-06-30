@@ -1,5 +1,5 @@
 ﻿using System;
-using Azure.Mobile.Models;
+using AppServiceHelpers.Models;
 
 namespace FormsSample.Models
 {

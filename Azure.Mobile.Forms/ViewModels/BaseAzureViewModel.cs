@@ -4,12 +4,12 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-using Azure.Mobile.Abstractions;
-using Azure.Mobile.Models;
+using AppServiceHelpers.Abstractions;
+using AppServiceHelpers.Models;
 
 using Xamarin.Forms;
 
-namespace Azure.Mobile.Forms
+namespace AppServiceHelpers.Forms
 {
     public class BaseAzureViewModel<T> where T : EntityData
     {

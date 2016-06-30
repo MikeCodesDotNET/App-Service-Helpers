@@ -1,5 +1,5 @@
-﻿using Azure.Mobile;
-using Azure.Mobile.Abstractions;
+﻿using AppServiceHelpers;
+using AppServiceHelpers.Abstractions;
 using Foundation;
 using UIKit;
 using TraditionalSample.iOS.Models;

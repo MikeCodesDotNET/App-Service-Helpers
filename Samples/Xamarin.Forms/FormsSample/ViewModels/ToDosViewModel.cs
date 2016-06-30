@@ -1,13 +1,13 @@
 ﻿using System;
-using Azure.Mobile;
+using AppServiceHelpers;
 
 using FormsSample.Models;
 using FormsSample.DataStores;
 using Xamarin.Forms;
 using System.Threading.Tasks;
-using Azure.Mobile.Abstractions;
+using AppServiceHelpers.Abstractions;
 using System.Collections.ObjectModel;
-using Azure.Mobile.Forms;
+using AppServiceHelpers.Forms;
 
 namespace FormsSample.ViewModels
 {

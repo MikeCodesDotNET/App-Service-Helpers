@@ -1,8 +1,8 @@
 using Foundation;
 using System;
 using UIKit;
-using Azure.Mobile.Abstractions;
-using Azure.Mobile;
+using AppServiceHelpers.Abstractions;
+using AppServiceHelpers;
 using TraditionalSample.iOS.Models;
 using System.Collections.Generic;
 using System.Linq;

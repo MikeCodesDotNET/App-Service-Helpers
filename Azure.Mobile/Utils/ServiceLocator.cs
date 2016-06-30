@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Azure.Mobile.Utils
+namespace AppServiceHelpers.Utils
 {
     /// <summary>
     ///     Simple ServiceLocator implementation.

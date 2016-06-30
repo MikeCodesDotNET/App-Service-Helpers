@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Azure.Mobile;
-using Azure.Mobile.Abstractions;
-using Azure.Mobile.Utils;
+using AppServiceHelpers;
+using AppServiceHelpers.Abstractions;
+using AppServiceHelpers.Utils;
 using FormsSample.DataStores;
 using FormsSample.Models;
 using Xamarin.Forms;

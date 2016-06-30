@@ -1,5 +1,5 @@
 ﻿using System;
-using Azure.Mobile.Tables;
+using AppServiceHelpers.Tables;
 using FormsSample.Models;
 
 namespace FormsSample.DataStores

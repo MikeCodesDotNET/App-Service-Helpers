@@ -1,9 +1,9 @@
 ﻿using System;
-using Azure.Mobile.Abstractions;
+using AppServiceHelpers.Abstractions;
 
 namespace FormsSample.ViewModels
 {
-    public class ToDoViewModel : Azure.Mobile.Forms.BaseAzureViewModel<Models.ToDo>
+    public class ToDoViewModel : AppServiceHelpers.Forms.BaseAzureViewModel<Models.ToDo>
     {
         IEasyMobileServiceClient client;
         Models.ToDo todo;

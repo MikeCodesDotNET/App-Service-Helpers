@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System;
 
-namespace Azure.Mobile.Models
+namespace AppServiceHelpers.Models
 {
     public class EntityDataAlwaysLatest
     {

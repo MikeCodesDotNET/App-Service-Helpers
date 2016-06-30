@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Azure.Mobile.Abstractions;
+using AppServiceHelpers.Abstractions;
 using Xamarin.Forms;
 
 namespace FormsSample.Pages

@@ -5,12 +5,12 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 
-using Azure.Mobile.Abstractions;
-using Azure.Mobile.Models;
-using Azure.Mobile.Tables;
-using Azure.Mobile.Utils;
+using AppServiceHelpers.Abstractions;
+using AppServiceHelpers.Models;
+using AppServiceHelpers.Tables;
+using AppServiceHelpers.Utils;
 
-namespace Azure.Mobile
+namespace AppServiceHelpers
 {
 	public class EasyMobileServiceClient : IEasyMobileServiceClient
 	{

@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 
-using Azure.Mobile.Abstractions;
-using Azure.Mobile.Utils;
+using AppServiceHelpers.Abstractions;
+using AppServiceHelpers.Utils;
 
-namespace Azure.Mobile.Tables
+namespace AppServiceHelpers.Tables
 {
 	public abstract class BaseTableDataStore
 	{

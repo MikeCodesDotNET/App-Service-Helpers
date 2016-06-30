@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 
 
-namespace Azure.Mobile.Abstractions
+namespace AppServiceHelpers.Abstractions
 {
     public interface ITableDataStore<T>
     {
