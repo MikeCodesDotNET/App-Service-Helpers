@@ -13,14 +13,39 @@ The base Azure.Mobile package contains everything you need as a C# developer to 
 #### Azure.Mobile.Forms
 The Forms package is an extra download that depends on Azure.Mobile. The package contains a ViewModel base class implementation which allows you to bind from XAML to Azure tables with minimal configuration on your end (just a couple of lines of code). 
 
+## Getting Started
+### Add App Service Helpers
+Configuring data access in your mobile apps with App Service Helpers is easy. Simply add the App Service Helpers NuGet, initialize the library, pass in your Azure mobile app’s URL, register a data model as a table, and finalize the schema, as seen below:
+###
+```c#
+using AppServiceHelpers;
+ 
+// 1. Create a new EasyMobileServiceClient.
+var client = EasyMobileServiceClient.Create();
+ 
+// 2. Initialize the library with the URL of the Azure Mobile App you created in Step #1.
+// Example: http://appservicehelpers.azurewebsites.net
+client.Initialize("{Your_Mobile_App_Backend_Url_Here");
+ 
+// 3. Register a model with the EasyMobileServiceClient to create a table.
+client.RegisterTable<TodoItem>();
+ 
+// 4. Finalize the schema for our database. All table registrations must be done before this step.
+client.FinalizeSchema();
+```
+### Subclass App Service Helpers’ View Model
+App Service Helpers for Xamarin.Forms includes a preconfigured view model that handles all communication with the EasyMobileServiceClient to help you get started fast. Add the App Service Helpers for Xamarin.Forms NuGet and subclass the BaseAzureViewModel:
+```c#
+using AppServiceHelpers.Forms
+ 
+public class TodoItemsViewModel : BaseFormsViewModel<TodoItem>
+{
+        public TodoItemsViewModel(IEasyMobileServiceClient client) : base (client) { }
+}
+```
 ## Sample Apps
 
-We've built a couple of samples to get you started. These naturally target Xamarin.Forms as well as Traditional Xamarin. There's no reason why Azure.Mobile can't be used outside of Xamarin and in any.NET application if you desire.
-
 * [Xamarin.Forms](https://github.com/MikeCodesDotNet/Azure.Mobile/tree/forms-sample/Samples/Xamarin.Forms)
-* Xamarin.iOS
-* Xamarin.Android
-* Xamarin.Mac 
 
 ### License
 Licensed under MIT see License file.
