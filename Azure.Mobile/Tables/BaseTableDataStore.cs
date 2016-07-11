@@ -39,10 +39,6 @@ namespace AppServiceHelpers.Tables
 
         public async virtual Task Sync()
         {
-            var connected = await Plugin.Connectivity.CrossConnectivity.Current.IsReachable("google.com");
-            if (connected == false)
-                return;
-
             try
             {
 				await serviceClient.MobileService.SyncContext.PushAsync();
