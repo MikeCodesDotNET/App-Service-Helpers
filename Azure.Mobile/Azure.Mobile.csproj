@@ -39,7 +39,6 @@
     <Compile Include="Abstractions\ITableDataStore.cs" />
     <Compile Include="EasyMobileServiceClient.cs" />
     <Compile Include="Abstractions\IEasyMobileServiceClient.cs" />
-    <Compile Include="Storage\Storage.cs" />
     <Compile Include="Models\EntityDataAlwaysLatest.cs" />
     <Compile Include="Helpers\ObservableRangeCollection.cs" />
   </ItemGroup>
@@ -101,9 +100,6 @@
     </Reference>
     <Reference Include="Microsoft.Data.OData">
       <HintPath>References\Microsoft.Data.OData.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Storage">
-      <HintPath>References\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
     <Reference Include="System.Spatial">
       <HintPath>References\System.Spatial.dll</HintPath>
