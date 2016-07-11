@@ -7,35 +7,52 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using AppServiceHelpers.Abstractions;
 using System.Collections.ObjectModel;
-using AppServiceHelpers.Forms;
+
 
 namespace FormsSample.ViewModels
 {
-    public class ToDosViewModel : BaseAzureViewModel<ToDo>
+	public class ToDosViewModel : BaseViewModel
     {
         IEasyMobileServiceClient client;
-        public ToDosViewModel(IEasyMobileServiceClient client) : base (client)
+        public ToDosViewModel(IEasyMobileServiceClient client)
         {
             this.client = client;
+
+			Todos = new ConnectedObservableCollection<ToDo>(client.Table<ToDo>());
         }
 
-        Models.ToDo selectedToDoItem;
-        public Models.ToDo SelectedToDoItem
-        {
-            get { return selectedToDoItem; }
-            set
-            {
-                selectedToDoItem = value;
-                OnPropertyChanged("SelectedItem");
+		ConnectedObservableCollection<ToDo> todos;
+		public ConnectedObservableCollection<ToDo> Todos
+		{
+			get { return todos; }
+			set { todos = value; OnPropertyChanged("Todos"); }
+		}
 
-                if (selectedToDoItem != null)
-                {
-                    var navigation = Application.Current.MainPage as NavigationPage;
-                    navigation.PushAsync(new Pages.ToDoPage(client, selectedToDoItem));
-                    SelectedToDoItem = null;
-                }
-            }
-        }
+		Command refreshCommand;
+		public new Command RefreshCommand
+		{
+			get { return refreshCommand ?? (refreshCommand = new Command(async () => await ExecuteRefreshCommand())); }
+		}
+
+		new async Task ExecuteRefreshCommand()
+		{
+			if (IsBusy)
+				return;
+
+			IsBusy = true;
+
+			try
+			{
+				await Todos.Refresh();
+			}
+			catch (Exception ex)
+			{
+				await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+			}
+			finally
+			{
+				IsBusy = false;
+			}
+		}
     }
 }
-

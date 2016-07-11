@@ -6,9 +6,9 @@
 					BackgroundColor="#F7F7F7" 
 					RowHeight="50" 
 					CachingStrategy="RecycleElement" 
-					ItemsSource="{Binding Items}" 
-					SelectedItem="{Binding SelectedToDoItem, Mode=TwoWay}"
+					ItemsSource="{Binding Todos}"
 					IsPullToRefreshEnabled="True"
+					IsRefreshing="{Binding IsBusy, Mode=OneWay}"
           			RefreshCommand="{Binding RefreshCommand}">
 				<ListView.ItemTemplate>
 					<DataTemplate>

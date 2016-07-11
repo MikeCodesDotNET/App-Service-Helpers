@@ -36,9 +36,6 @@
     <EmbeddedResource Include="Pages\ToDoListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\ToDoPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -51,16 +48,9 @@
     <Compile Include="Pages\ToDoListPage.xaml.cs">
       <DependentUpon>ToDoListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ToDoPage.xaml.cs">
-      <DependentUpon>ToDoPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModels\ToDoViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Azure.Mobile.Forms\Azure.Mobile.Forms.csproj">
-      <Project>{6c03d988-79f9-4a91-976e-a195d8fcf7b9}</Project>
-      <Name>Azure.Mobile.Forms</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Azure.Mobile\Azure.Mobile.csproj">
       <Project>{33F1E859-A0A4-499B-B4EB-E23ADAE53621}</Project>
       <Name>Azure.Mobile</Name>

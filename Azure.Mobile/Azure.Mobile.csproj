@@ -41,6 +41,7 @@
     <Compile Include="Abstractions\IEasyMobileServiceClient.cs" />
     <Compile Include="Models\EntityDataAlwaysLatest.cs" />
     <Compile Include="Helpers\ObservableRangeCollection.cs" />
+    <Compile Include="ConnectedObservableCollection.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
