@@ -43,6 +43,18 @@ public class TodoItemsViewModel : BaseFormsViewModel<TodoItem>
         public TodoItemsViewModel(IEasyMobileServiceClient client) : base (client) { }
 }
 ```
+## Release Notes
+
+### 1.0.4
+#### Bugs
+* Resolved package errors
+
+#### Features
+* Removed Plugin.Connectivity
+
+
+### License
+Licensed under MIT see License file.
 ## Sample Apps
 
 * [Xamarin.Forms](https://github.com/MikeCodesDotNet/Azure.Mobile/tree/forms-sample/Samples/Xamarin.Forms)
