@@ -13,11 +13,8 @@ namespace FormsSample.ViewModels
 {
 	public class ToDosViewModel : BaseViewModel
     {
-        IEasyMobileServiceClient client;
         public ToDosViewModel(IEasyMobileServiceClient client)
         {
-            this.client = client;
-
 			Todos = new ConnectedObservableCollection<ToDo>(client.Table<ToDo>());
 			ExecuteRefreshCommand();
         }
@@ -30,12 +27,12 @@ namespace FormsSample.ViewModels
 		}
 
 		Command refreshCommand;
-		public new Command RefreshCommand
+		public Command RefreshCommand
 		{
 			get { return refreshCommand ?? (refreshCommand = new Command(async () => await ExecuteRefreshCommand())); }
 		}
 
-		new async Task ExecuteRefreshCommand()
+		async Task ExecuteRefreshCommand()
 		{
 			if (IsBusy)
 				return;
