@@ -72,20 +72,6 @@ namespace AppServiceHelpers
 			}
 
 			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-
-			System.Diagnostics.Debug.WriteLine("refresh changed!");
-		}
-
-		protected override void OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-		{
-			base.OnCollectionChanged(e);
-			System.Diagnostics.Debug.WriteLine("collection changed!");
-		}
-
-		protected override void OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs e)
-		{
-			base.OnPropertyChanged(e);
-			System.Diagnostics.Debug.WriteLine("property changed!");
 		}
 	}
 }
