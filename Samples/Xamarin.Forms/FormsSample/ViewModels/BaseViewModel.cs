@@ -7,10 +7,6 @@ namespace FormsSample.ViewModels
 {
 	public class BaseViewModel : INotifyPropertyChanged
 	{
-		public BaseViewModel()
-		{
-		}
-
 		private string title = string.Empty;
 		public const string TitlePropertyName = "Title";
 

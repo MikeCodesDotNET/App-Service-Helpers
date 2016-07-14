@@ -19,6 +19,7 @@ namespace FormsSample.ViewModels
             this.client = client;
 
 			Todos = new ConnectedObservableCollection<ToDo>(client.Table<ToDo>());
+			ExecuteRefreshCommand();
         }
 
 		ConnectedObservableCollection<ToDo> todos;
