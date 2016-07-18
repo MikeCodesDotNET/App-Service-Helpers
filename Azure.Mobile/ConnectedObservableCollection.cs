@@ -5,11 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using AppServiceHelpers.Abstractions;
+using AppServiceHelpers.Helpers;
 using AppServiceHelpers.Models;
 
 namespace AppServiceHelpers
 {
-	public class ConnectedObservableCollection<T> : ObservableCollection<T> where T : EntityData
+	public class ConnectedObservableCollection<T> : ObservableRangeCollection<T> where T : EntityData
 	{
 		ITableDataStore<T> table;
 
