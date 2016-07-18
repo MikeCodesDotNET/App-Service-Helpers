@@ -159,6 +159,12 @@
       <DependentUpon>MyTableView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AppServiceHelpers.Mobile\AppServiceHelpers.csproj">
+      <Project>{33F1E859-A0A4-499B-B4EB-E23ADAE53621}</Project>
+      <Name>AppServiceHelpers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
 </Project>

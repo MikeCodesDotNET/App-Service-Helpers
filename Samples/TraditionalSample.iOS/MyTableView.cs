@@ -24,7 +24,7 @@ namespace TraditionalSample.iOS
         {
             base.ViewDidLoad();
 
-            client = new EasyMobileServiceClient();
+			client = EasyMobileServiceClient.Create();
             client.Initialize("http://xamarin-todo-sample.azurewebsites.net");
             client.RegisterTable<ToDo>();
             client.FinalizeSchema();
