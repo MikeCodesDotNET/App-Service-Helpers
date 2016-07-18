@@ -58,6 +58,10 @@ namespace AppServiceHelpers
 			initialized = true;
 		}
 
+		/// <summary>
+		/// Initializes the EasyMobileServiceClient with a preconfigured IMobileServiceClient for custom scenarios.
+		/// </summary>
+		/// <param name="client">Preconfigured IMobileServiceClient.</param>
 		public void Initialize(IMobileServiceClient client)
 		{
 			if (initialized)
