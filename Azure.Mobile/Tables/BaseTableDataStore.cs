@@ -55,7 +55,7 @@ namespace AppServiceHelpers.Tables
         {
             Initialize();
 
-            await table.InsertAsync(item);
+            await Table.InsertAsync(item);
             await Sync();
 
             return true;
@@ -65,7 +65,7 @@ namespace AppServiceHelpers.Tables
         {
             Initialize();
 
-            await table.UpdateAsync(item);
+            await Table.UpdateAsync(item);
             await Sync();
 
             return true;
@@ -75,7 +75,7 @@ namespace AppServiceHelpers.Tables
         {
             Initialize();
 
-            await table.DeleteAsync(item);
+            await Table.DeleteAsync(item);
             await Sync();
 
             return true;
@@ -85,7 +85,7 @@ namespace AppServiceHelpers.Tables
         {
             await Sync();
 
-            var items = await table.Where(s => s.Id == id).ToListAsync();
+            var items = await Table.Where(s => s.Id == id).ToListAsync();
 
             if (items == null || items.Count == 0)
                 return null;
@@ -98,7 +98,7 @@ namespace AppServiceHelpers.Tables
             Initialize();
             await Sync();
 
-            return await table.ToEnumerableAsync();
+            return await Table.ToEnumerableAsync();
         }
 
         public virtual int Count()
