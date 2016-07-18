@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
    <metadata minClientVersion="2.8.1">
        <id>AppService.Helpers</id>
-       <version>1.1.0-beta</version>
+       <version>1.1.1-beta</version>
        <title>App Service Helpers</title>
        <authors>Mike James and Pierce Boggan</authors>
        <owners>Mike James</owners>
