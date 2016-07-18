@@ -133,10 +133,6 @@
       <Project>{9870CE21-0A4B-4A02-80F5-2AF2BAA78478}</Project>
       <Name>FormsSample</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Azure.Mobile\Azure.Mobile.csproj">
-      <Project>{33F1E859-A0A4-499B-B4EB-E23ADAE53621}</Project>
-      <Name>Azure.Mobile</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

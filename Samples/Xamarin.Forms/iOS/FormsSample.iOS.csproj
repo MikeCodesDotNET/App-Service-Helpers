@@ -165,10 +165,6 @@
       <Project>{9870CE21-0A4B-4A02-80F5-2AF2BAA78478}</Project>
       <Name>FormsSample</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Azure.Mobile\Azure.Mobile.csproj">
-      <Project>{33F1E859-A0A4-499B-B4EB-E23ADAE53621}</Project>
-      <Name>Azure.Mobile</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\..\packages\Xamarin.Forms.2.2.0.45\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\..\packages\Xamarin.Forms.2.2.0.45\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
