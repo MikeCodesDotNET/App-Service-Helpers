@@ -13,7 +13,7 @@ namespace AppServiceHelpers.Abstractions
 {
 	public interface IEasyMobileServiceClient
 	{
-		MobileServiceClient MobileService { get; set; }
+		IMobileServiceClient MobileService { get; set; }
 
 		void Initialize(string url);
 		void RegisterTable<A>() where A : EntityData;

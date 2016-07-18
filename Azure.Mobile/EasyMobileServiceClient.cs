@@ -17,7 +17,7 @@ namespace AppServiceHelpers
 		bool initialized;
 		MobileServiceSQLiteStore store;
 
-		public MobileServiceClient MobileService { get; set; }
+		public IMobileServiceClient MobileService { get; set; }
         public string Url { get; private set; }
 
 		Dictionary<string, BaseTableDataStore> tables;
@@ -53,6 +53,17 @@ namespace AppServiceHelpers
 				}
 			};
 
+			tables = new Dictionary<string, BaseTableDataStore>();
+
+			initialized = true;
+		}
+
+		public void Initialize(IMobileServiceClient client)
+		{
+			if (initialized)
+				return;
+
+			MobileService = client;
 			tables = new Dictionary<string, BaseTableDataStore>();
 
 			initialized = true;
