@@ -52,5 +52,36 @@ namespace FormsSample.ViewModels
 				IsBusy = false;
 			}
 		}
+
+		Command addNewItemCommand;
+		public Command AddNewItemCommand
+		{
+			get { return addNewItemCommand ?? (addNewItemCommand = new Command(async () => await ExecuteAddNewItemCommandAsync())); }
+		}
+
+		async Task ExecuteAddNewItemCommandAsync()
+		{
+			if (IsBusy)
+				return;
+
+			IsBusy = true;
+
+			try
+			{
+				await Todos.Add(new ToDo
+				{
+					Text = DateTime.Now.ToString(),
+					Completed = false
+				});
+			}
+			catch (Exception ex)
+			{
+				await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+			}
+			finally
+			{
+				IsBusy = false;
+			}
+		}
     }
 }
