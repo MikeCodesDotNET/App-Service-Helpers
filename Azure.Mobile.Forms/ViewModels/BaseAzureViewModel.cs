@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 using AppServiceHelpers.Abstractions;
@@ -101,69 +102,63 @@ namespace AppServiceHelpers.Forms
         }
 
         string title = string.Empty;
-        public const string TitlePropertyName = "Title";
-
         /// <summary>
         /// The title of the page.
         /// </summary>
         public string Title
         {
             get { return title; }
-            set { SetProperty(ref title, value, TitlePropertyName); }
+            set { SetProperty(ref title, value); }
         }
 
         string subTitle = string.Empty;
         /// <summary>
         /// The subtitle of the page.
         /// </summary>
-        public const string SubtitlePropertyName = "Subtitle";
         public string Subtitle
         {
             get { return subTitle; }
-            set { SetProperty(ref subTitle, value, SubtitlePropertyName); }
+            set { SetProperty(ref subTitle, value); }
         }
 
         string icon = null;
         /// <summary>
         /// The icon of the page.
         /// </summary>
-        public const string IconPropertyName = "Icon";
         public string Icon
         {
             get { return icon; }
-            set { SetProperty(ref icon, value, IconPropertyName); }
+            set { SetProperty(ref icon, value); }
         }
 
         bool isBusy;
         /// <summary>
         /// The current state of the view.
         /// </summary>
-        public const string IsBusyPropertyName = "IsBusy";
         public bool IsBusy
         {
             get { return isBusy; }
-            set { SetProperty(ref isBusy, value, IsBusyPropertyName); }
+            set { SetProperty(ref isBusy, value); }
         }
 
         bool canLoadMore = true;
         /// <summary>
         /// Can we load more items?
         /// </summary>
-        public const string CanLoadMorePropertyName = "CanLoadMore";
         public bool CanLoadMore
         {
             get { return canLoadMore; }
-            set { SetProperty(ref canLoadMore, value, CanLoadMorePropertyName); }
+            set { SetProperty(ref canLoadMore, value); }
         }
 
-        protected void SetProperty<T>(
-            ref T backingStore, T value,
-            string propertyName,
+        protected void SetProperty<TStore>(
+            ref TStore backingStore, TStore value,
+            [CallerMemberName]string propertyName = null,
             Action onChanged = null)
         {
 
 
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            if (EqualityComparer<TStore>.Default.Equals(backingStore, value))
                 return;
 
             backingStore = value;
