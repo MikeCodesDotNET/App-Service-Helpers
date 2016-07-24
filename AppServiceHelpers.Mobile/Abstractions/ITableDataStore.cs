@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace AppServiceHelpers.Abstractions
 {
     public interface ITableDataStore<T>
     {
-        void Initialize();
+		void Initialize(IEasyMobileServiceClient client);
 
         Task<IEnumerable<T>> GetItemsAsync();
 

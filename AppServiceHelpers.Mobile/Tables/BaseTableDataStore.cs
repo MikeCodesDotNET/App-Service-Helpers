@@ -26,12 +26,6 @@ namespace AppServiceHelpers.Tables
 			get { return table ?? (table = serviceClient.MobileService.GetSyncTable<T>()); }
         }
 
-        public virtual void Initialize()
-        {
-            if (serviceClient == null)
-				serviceClient = ServiceLocator.Instance.Resolve<IEasyMobileServiceClient>();
-        }
-
 		public virtual void Initialize(IEasyMobileServiceClient client)
 		{
 			serviceClient = client;
@@ -53,8 +47,6 @@ namespace AppServiceHelpers.Tables
 
         public async virtual Task<bool> AddAsync(T item)
         {
-            Initialize();
-
             await Table.InsertAsync(item);
             await Sync();
 
@@ -63,8 +55,6 @@ namespace AppServiceHelpers.Tables
 
         public async virtual Task<bool> UpdateAsync(T item)
         {
-            Initialize();
-
             await Table.UpdateAsync(item);
             await Sync();
 
@@ -73,8 +63,6 @@ namespace AppServiceHelpers.Tables
 
         public async virtual Task<bool> DeleteAsync(T item)
         {
-            Initialize();
-
             await Table.DeleteAsync(item);
             await Sync();
 
@@ -95,7 +83,6 @@ namespace AppServiceHelpers.Tables
 
         public async virtual Task<IEnumerable<T>> GetItemsAsync()
         {
-            Initialize();
             await Sync();
 
             return await Table.ToEnumerableAsync();
@@ -111,4 +98,3 @@ namespace AppServiceHelpers.Tables
         }
     }
 }
-

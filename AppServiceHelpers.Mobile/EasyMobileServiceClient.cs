@@ -23,16 +23,6 @@ namespace AppServiceHelpers
 		Dictionary<string, BaseTableDataStore> tables;
 
 		/// <summary>
-		/// Creates a new EasyMobileService client.
-		/// </summary>
-		public static IEasyMobileServiceClient Create()
-		{
-			ServiceLocator.Instance.Add<IEasyMobileServiceClient, EasyMobileServiceClient>();
-
-			return ServiceLocator.Instance.Resolve<IEasyMobileServiceClient>();
-		}
-
-		/// <summary>
 		/// Initializes the EasyMobileServiceClient to work with an Azure Mobile App endpoint.
 		/// </summary>
 		/// <param name="url">The url of your Azure Mobile App.</param>
@@ -95,7 +85,10 @@ namespace AppServiceHelpers
 		public void RegisterTable<A, B>() where A : EntityData where B : BaseTableDataStore<A>, new()
 		{
 			store.DefineTable<A>();
-			ServiceLocator.Instance.Add<ITableDataStore<A>, B>();
+
+			var table = new B();
+			table.Initialize(this);
+			tables.Add(typeof(A).Name, table);
 		}
 
 		/// <summary>
@@ -123,6 +116,5 @@ namespace AppServiceHelpers
 				return tables[typeof(T).Name] as BaseTableDataStore<T>;
 			}
 		}
-		
 	}
 }
