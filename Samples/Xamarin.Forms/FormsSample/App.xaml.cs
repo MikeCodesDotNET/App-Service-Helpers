@@ -15,7 +15,7 @@ namespace FormsSample
         {
             InitializeComponent();
 
-			client = EasyMobileServiceClient.Create();
+			client = new EasyMobileServiceClient();
             client.Initialize("http://xamarin-todo-sample.azurewebsites.net");
             client.RegisterTable<ToDo>();
             client.FinalizeSchema();

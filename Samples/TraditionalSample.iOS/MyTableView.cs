@@ -24,10 +24,10 @@ namespace TraditionalSample.iOS
         {
             base.ViewDidLoad();
 
-			client = EasyMobileServiceClient.Create();
+			client = new EasyMobileServiceClient();
             client.Initialize("http://xamarin-todo-sample.azurewebsites.net");
             client.RegisterTable<ToDo>();
-            client.FinalizeSchema();
+            await client.FinalizeSchema();
 
             dataStore = client.Table<ToDo>();
             await dataStore.Sync();
@@ -47,7 +47,7 @@ namespace TraditionalSample.iOS
 
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
-            var todo = items.ElementAt(indexPath.Row);;
+            var todo = items.ElementAt(indexPath.Row);
             var cell = tableView.DequeueReusableCell("MyCell") as MyCustomCell;
 
             cell.Todo = todo;
