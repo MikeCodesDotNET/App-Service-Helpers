@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -22,7 +24,8 @@ namespace AppServiceHelpers
 		public new async Task Add(T item)
 		{
 			base.Add(item);
-			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+
+			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, new List<T> { item }));
 
 			await table.AddAsync(item);
 		}
@@ -30,7 +33,7 @@ namespace AppServiceHelpers
 		public new async Task Insert(int index, T item)
 		{
 			base.Insert(index, item);
-			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, new List<T> { item }));
 
 			await table.AddAsync(item);
 		}
@@ -38,9 +41,9 @@ namespace AppServiceHelpers
 		public async Task Update(T item)
 		{
 			base.Remove(Items.FirstOrDefault((i) => i.Id == item.Id));
-			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new List<T> { item }));
 			base.Add(item);
-			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, new List<T> { item }));
 
 			await table.UpdateAsync(item);
 		}
@@ -48,7 +51,7 @@ namespace AppServiceHelpers
 		public new async Task Remove(T item)
 		{
 			base.Remove(item);
-			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new List<T> { item }));
 
 			await table.DeleteAsync(item);
 		}
@@ -57,7 +60,7 @@ namespace AppServiceHelpers
 		{
 			var item = Items[index];
 			base.RemoveAt(index);
-			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new List<T> { item }));
 
 			await table.DeleteAsync(item);
 		}
@@ -66,7 +69,6 @@ namespace AppServiceHelpers
 		{
 			var _items = await table.GetItemsAsync();
 			Items.Clear();
-			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 			foreach (var item in _items)
 			{
 				Items.Add(item);
