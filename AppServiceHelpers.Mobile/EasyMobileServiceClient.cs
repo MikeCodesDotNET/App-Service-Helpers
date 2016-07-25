@@ -116,5 +116,16 @@ namespace AppServiceHelpers
 				return tables[typeof(T).Name] as BaseTableDataStore<T>;
 			}
 		}
+
+		#region Authentication
+		// TODO: 1. Handle token store.
+		// 2. Handle refresh scenarios.
+		public async Task<bool> LoginAsync(MobileServiceAuthenticationProvider provider)
+		{
+			var authenticator = ServiceLocator.Instance.Resolve<IAuthenticator>();
+
+			return await authenticator.LoginAsync(MobileService, provider);
+		}
+		#endregion
 	}
 }
