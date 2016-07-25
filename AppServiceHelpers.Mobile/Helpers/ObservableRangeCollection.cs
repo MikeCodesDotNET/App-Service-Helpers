@@ -89,7 +89,7 @@ namespace AppServiceHelpers.Helpers
         {
             ReplaceRange(new T[] { item });
 
-			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
+			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
 
 		/// <summary> 
