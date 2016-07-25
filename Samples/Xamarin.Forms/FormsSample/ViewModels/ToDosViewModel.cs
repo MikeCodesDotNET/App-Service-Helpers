@@ -5,6 +5,7 @@ using AppServiceHelpers;
 using FormsSample.Models;
 
 using AppServiceHelpers.Abstractions;
+using AppServiceHelpers.Helpers;
 using Xamarin.Forms;
 
 namespace FormsSample.ViewModels
