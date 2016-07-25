@@ -10,7 +10,7 @@ using AppServiceHelpers.Abstractions;
 using AppServiceHelpers.Helpers;
 using AppServiceHelpers.Models;
 
-namespace AppServiceHelpers
+namespace AppServiceHelpers.Helpers
 {
 	public class ConnectedObservableCollection<T> : ObservableRangeCollection<T> where T : EntityData
 	{
