@@ -79,7 +79,7 @@ namespace AppServiceHelpers.Helpers
 
             foreach (var i in collection)
                 Items.Remove(i);
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, collection));
         }
 
         /// <summary> 
@@ -88,19 +88,20 @@ namespace AppServiceHelpers.Helpers
         public void Replace(T item)
         {
             ReplaceRange(new T[] { item });
+
+			OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset);
         }
 
-        /// <summary> 
-        /// Clears the current collection and replaces it with the specified collection. 
-        /// </summary> 
-        public void ReplaceRange(IEnumerable<T> collection)
-        {
-            if (collection == null)
-                throw new ArgumentNullException("collection");
+		/// <summary> 
+		/// Clears the current collection and replaces it with the specified collection. 
+		/// </summary> 
+		public void ReplaceRange(IEnumerable<T> collection)
+		{
+			if (collection == null)
+				throw new ArgumentNullException("collection");
 
-            Items.Clear();
-            AddRange(collection, NotifyCollectionChangedAction.Reset);
-        }
-
+			Items.Clear();
+			AddRange(collection, NotifyCollectionChangedAction.Reset);
+		}
     }
 }
