@@ -1,13 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using AppServiceHelpers;
 
 using FormsSample.Models;
-using FormsSample.DataStores;
-using Xamarin.Forms;
-using System.Threading.Tasks;
-using AppServiceHelpers.Abstractions;
-using System.Collections.ObjectModel;
 
+using AppServiceHelpers.Abstractions;
+using Xamarin.Forms;
 
 namespace FormsSample.ViewModels
 {
@@ -68,7 +66,7 @@ namespace FormsSample.ViewModels
 
 			try
 			{
-				await Todos.Add(new ToDo
+				Todos.Add(new ToDo
 				{
 					Text = DateTime.Now.ToString(),
 					Completed = false
