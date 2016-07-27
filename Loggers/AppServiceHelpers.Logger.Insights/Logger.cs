@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin;
 
 namespace AppServiceHelpers.Logger.Insights
 {
-    public class Logger : Abstractions.ILogger
+    public class Logger : AppServiceHelpers.Abstractions.ILogger
     {
         public bool IsInitialized()
         {
