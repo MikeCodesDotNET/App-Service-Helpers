@@ -15,7 +15,7 @@ namespace FormsSample
 
 		public LoginViewModel(IEasyMobileServiceClient client)
 		{
-			this.client = client;
+            this.client = AppServiceHelpers.EasyMobileServiceClient.Current;
 		}
 
 		Command loginCommand;

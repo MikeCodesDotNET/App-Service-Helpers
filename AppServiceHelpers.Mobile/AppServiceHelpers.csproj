@@ -44,6 +44,7 @@
     <Compile Include="Authentication\IAuthenticator.cs" />
     <Compile Include="Authentication\RefreshDelegatingHandler.cs" />
     <Compile Include="Authentication\TokenStore.cs" />
+    <Compile Include="Abstractions\ILogger.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

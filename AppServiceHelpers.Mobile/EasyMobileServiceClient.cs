@@ -22,11 +22,35 @@ namespace AppServiceHelpers
 
 		Dictionary<string, BaseTableDataStore> tables;
 
-		/// <summary>
-		/// Initializes the EasyMobileServiceClient to work with an Azure Mobile App endpoint.
-		/// </summary>
-		/// <param name="url">The url of your Azure Mobile App.</param>
-		public void Initialize(string url)
+        static Lazy<IEasyMobileServiceClient> Implementation = new Lazy<IEasyMobileServiceClient>(() => new EasyMobileServiceClient(), System.Threading.LazyThreadSafetyMode.PublicationOnly);
+
+        /// <summary>
+        /// Current settings to use
+        /// </summary>
+        public static IEasyMobileServiceClient Current
+        {
+            get
+            {
+                var ret = Implementation.Value;
+                if (ret == null)
+                {
+                    throw NotImplementedInReferenceAssembly();
+                }
+                return ret;
+            }
+        }
+
+        internal static Exception NotImplementedInReferenceAssembly()
+        {
+            return new NotImplementedException("This functionality is not implemented in the portable version of this assembly.  You should reference the NuGet package from your main application project in order to reference the platform-specific implementation.");
+        }
+
+
+        /// <summary>
+        /// Initializes the EasyMobileServiceClient to work with an Azure Mobile App endpoint.
+        /// </summary>
+        /// <param name="url">The url of your Azure Mobile App.</param>
+        public void Initialize(string url)
 		{
 			if (initialized)
 				return;

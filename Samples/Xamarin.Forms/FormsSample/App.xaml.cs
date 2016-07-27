@@ -1,8 +1,5 @@
-﻿using System.Threading.Tasks;
-using AppServiceHelpers;
+﻿using AppServiceHelpers;
 using AppServiceHelpers.Abstractions;
-using AppServiceHelpers.Utils;
-using FormsSample.DataStores;
 using FormsSample.Models;
 using Xamarin.Forms;
 
@@ -10,17 +7,15 @@ namespace FormsSample
 {
     public partial class App : Application
     {
-        IEasyMobileServiceClient client;
         public App()
         {
             InitializeComponent();
 
-			client = new EasyMobileServiceClient();
-            client.Initialize("http://xamarin-todo-sample.azurewebsites.net");
-            client.RegisterTable<ToDo>();
-            client.FinalizeSchema();
+            EasyMobileServiceClient.Current.Initialize("http://xamarin-todo-sample.azurewebsites.net");
+            EasyMobileServiceClient.Current.RegisterTable<ToDo>();
+            EasyMobileServiceClient.Current.FinalizeSchema();
 
-            MainPage = new NavigationPage(new Pages.ToDoListPage(client));
+            MainPage = new NavigationPage(new Pages.ToDoListPage());
         }
 
 
