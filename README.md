@@ -43,15 +43,8 @@ public class TodoItemsViewModel : BaseFormsViewModel<TodoItem>
         public TodoItemsViewModel(IEasyMobileServiceClient client) : base (client) { }
 }
 ```
-## Release Notes
-
-### 1.0.4
-#### Bugs
-* Resolved package errors
-
-#### Features
-* Removed Plugin.Connectivity
-
+## Documentation
+You can find a compresentive set of docs over at [Readme.io](https://ashlibrary.readme.io/docs)
 
 ### License
 Licensed under MIT see License file.
