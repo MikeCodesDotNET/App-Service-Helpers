@@ -19,6 +19,7 @@ namespace AppServiceHelpers.Abstractions
 		void RegisterTable<A>() where A : EntityData;
 		ITableDataStore<T> Table<T>() where T : EntityData;
 		Task FinalizeSchema();
+        Task<bool> LoginAsync(MobileServiceAuthenticationProvider provider);
 	}
 }
 
