@@ -4,12 +4,12 @@ using System.Runtime.CompilerServices;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("Azure.Mobile")]
+[assembly: AssemblyTitle("AppServiceHelpers")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Xamarin")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Mike James 2016")]
+[assembly: AssemblyCopyright("Mike James, Pierce Boggan 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

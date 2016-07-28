@@ -5,10 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Auth;
 
-namespace AppServiceHelpers.Platform.Android
+namespace AppServiceHelpers
 {
 	public class Authenticator : IAuthenticator
 	{
+		private static readonly IAuthenticator instance = new Authenticator();
+		internal static IAuthenticator Instance
+		{
+			get
+			{
+				return instance;
+			}
+		}
+
 		public async Task<bool> LoginAsync(IMobileServiceClient client, MobileServiceAuthenticationProvider provider)
 		{
 			var success = false;

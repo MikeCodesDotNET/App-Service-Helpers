@@ -11,6 +11,7 @@ namespace FormsSample.Pages
         public ToDoListPage()
         {
             InitializeComponent();
+
             BindingContext = new ViewModels.ToDosViewModel();
         }
     }

@@ -146,7 +146,7 @@ namespace AppServiceHelpers
 		// 2. Handle refresh scenarios.
 		public async Task<bool> LoginAsync(MobileServiceAuthenticationProvider provider)
 		{
-			var authenticator = ServiceLocator.Instance.Resolve<IAuthenticator>();
+			var authenticator = Platform.Instance.Authenticator;
 
 			return await authenticator.LoginAsync(MobileService, provider);
 		}

@@ -137,6 +137,10 @@
       <Project>{33F1E859-A0A4-499B-B4EB-E23ADAE53621}</Project>
       <Name>AppServiceHelpers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\AppServiceHelpers.Platform.Android\AppServiceHelpers.Ext.Android.csproj">
+      <Project>{90118A75-7F4C-4211-94B5-17E29A46E880}</Project>
+      <Name>AppServiceHelpers.Ext.Android</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\..\packages\Xamarin.Android.Support.Vector.Drawable.23.3.0\build\Xamarin.Android.Support.Vector.Drawable.targets')" />

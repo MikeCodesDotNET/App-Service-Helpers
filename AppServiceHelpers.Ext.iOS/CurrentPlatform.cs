@@ -1,12 +1,10 @@
-﻿using Android.Content;
-
+﻿using System;
+using AppServiceHelpers.Utils;
 
 namespace AppServiceHelpers
 {
 	public class CurrentPlatform : IPlatform
 	{
-		public static Context Context { get; set; }
-
 		IAuthenticator IPlatform.Authenticator
 		{
 			get
@@ -15,9 +13,10 @@ namespace AppServiceHelpers
 			}
 		}
 
-		public static void Init(Context context)
+		public static void Init()
 		{
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+			SQLitePCL.CurrentPlatform.Init();
 		}
 	}
 }

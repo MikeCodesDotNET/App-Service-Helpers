@@ -13,7 +13,7 @@ namespace FormsSample
 	{
 		IEasyMobileServiceClient client;
 
-		public LoginViewModel(IEasyMobileServiceClient client)
+		public LoginViewModel()
 		{
             this.client = AppServiceHelpers.EasyMobileServiceClient.Current;
 		}
@@ -46,5 +46,3 @@ namespace FormsSample
 		}
 	}
 }
-
-

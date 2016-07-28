@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using AppServiceHelpers;
 using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Auth;
 
 using UIKit;
 
-namespace AppServiceHelpers.Platform.iOS
+namespace AppServiceHelpers
 {
-	public class Authenticator : IAuthenticator
+	internal class Authenticator : IAuthenticator
 	{
+		private static readonly IAuthenticator instance = new Authenticator();
+		internal static IAuthenticator Instance
+		{
+			get
+			{
+				return instance;
+			}
+		}
+
 		public async Task<bool> LoginAsync(IMobileServiceClient client, MobileServiceAuthenticationProvider provider)
 		{
 			var success = false;
@@ -31,6 +39,8 @@ namespace AppServiceHelpers.Platform.iOS
 						{ "authenticationToken", userId }
 					};
 
+					//await AccountStore.Create().SaveAsync(new Account(userId, keys), provider.ToString());
+
 					success = true;
 				}
 			}
@@ -43,3 +53,4 @@ namespace AppServiceHelpers.Platform.iOS
 		}
 	}
 }
+ 

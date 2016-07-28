@@ -7,11 +7,13 @@
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>AppServiceHelpers</RootNamespace>
-    <AssemblyName>Azure.Mobile</AssemblyName>
+    <AssemblyName>AppServiceHelpers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <ReleaseVersion>1.1.0</ReleaseVersion>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,10 +43,12 @@
     <Compile Include="Models\EntityDataAlwaysLatest.cs" />
     <Compile Include="Helpers\ObservableRangeCollection.cs" />
     <Compile Include="Helpers\ConnectedObservableCollection.cs" />
-    <Compile Include="Authentication\IAuthenticator.cs" />
     <Compile Include="Authentication\RefreshDelegatingHandler.cs" />
     <Compile Include="Authentication\TokenStore.cs" />
     <Compile Include="Abstractions\ILogger.cs" />
+    <Compile Include="Platform\Platform.cs" />
+    <Compile Include="Platform\IPlatform.cs" />
+    <Compile Include="Platform\IAuthenticator.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -107,6 +111,7 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Authentication\" />
+    <Folder Include="Platform\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

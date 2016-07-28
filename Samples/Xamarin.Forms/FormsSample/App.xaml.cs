@@ -1,8 +1,10 @@
-﻿using AppServiceHelpers;
-using AppServiceHelpers.Abstractions;
-using FormsSample.Models;
-using Xamarin.Forms;
+﻿using FormsSample.Models;
 
+using AppServiceHelpers;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FormsSample
 {
     public partial class App : Application
@@ -11,11 +13,11 @@ namespace FormsSample
         {
             InitializeComponent();
 
-            EasyMobileServiceClient.Current.Initialize("http://xamarin-todo-sample.azurewebsites.net");
+            EasyMobileServiceClient.Current.Initialize("https://todoitems.azurewebsites.net");
             EasyMobileServiceClient.Current.RegisterTable<ToDo>();
             EasyMobileServiceClient.Current.FinalizeSchema();
 
-            MainPage = new NavigationPage(new Pages.ToDoListPage());
+			MainPage = new NavigationPage(new LoginPage());
         }
 
 
