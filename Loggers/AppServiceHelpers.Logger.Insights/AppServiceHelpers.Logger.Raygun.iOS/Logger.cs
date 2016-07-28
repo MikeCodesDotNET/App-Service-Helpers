@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppServiceHelpers.Abstractions;
 using Mindscape.Raygun4Net;
 
 namespace AppServiceHelpers.Logger.Raygun
 {
-    public class Logger : Abstractions.ILogger
+    public class Logger : ILogger
     {
 
         public void Init(string apiKey)
@@ -30,6 +31,7 @@ namespace AppServiceHelpers.Logger.Raygun
         {
             RaygunClient.Current.Send(ex, null, data);
         }
+
     }
 }
 

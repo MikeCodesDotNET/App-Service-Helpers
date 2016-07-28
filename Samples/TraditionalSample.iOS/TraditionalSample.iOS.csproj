@@ -123,6 +123,9 @@
     <Reference Include="Plugin.Connectivity.Abstractions">
       <HintPath>..\..\packages\Xam.Plugin.Connectivity.2.2.2\lib\Xamarin.iOS10\Plugin.Connectivity.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Mindscape.Raygun4Net.Xamarin.iOS.Unified">
+      <HintPath>..\..\packages\Mindscape.Raygun4Net.5.3.1\lib\Xamarin.iOS10\Mindscape.Raygun4Net.Xamarin.iOS.Unified.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcons.appiconset\Contents.json">
@@ -163,6 +166,10 @@
     <ProjectReference Include="..\..\AppServiceHelpers.Mobile\AppServiceHelpers.csproj">
       <Project>{33F1E859-A0A4-499B-B4EB-E23ADAE53621}</Project>
       <Name>AppServiceHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\AppServiceHelpers.Platform.iOS\AppServiceHelpers.Platform.iOS.csproj">
+      <Project>{A591D34F-F73C-46F0-8D72-F2BEA0E454D0}</Project>
+      <Name>AppServiceHelpers.Platform.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

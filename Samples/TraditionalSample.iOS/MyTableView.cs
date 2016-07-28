@@ -24,14 +24,17 @@ namespace TraditionalSample.iOS
         {
             base.ViewDidLoad();
 
-			client = new EasyMobileServiceClient();
-            client.Initialize("http://xamarin-todo-sample.azurewebsites.net");
-            client.RegisterTable<ToDo>();
-            await client.FinalizeSchema();
+            EasyMobileServiceClient.Current.Initialize("http://xamarin-todo-sample.azurewebsites.net");
+            EasyMobileServiceClient.Current.RegisterTable<ToDo>();
+            await EasyMobileServiceClient.Current.FinalizeSchema();
 
-            dataStore = client.Table<ToDo>();
+            dataStore = AppServiceHelpers.EasyMobileServiceClient.Current.Table<ToDo>();
             await dataStore.Sync();
             items = await dataStore.GetItemsAsync();
+
+            TableView.DataSource = this;
+            TableView.Delegate = this;
+            TableView.ReloadData();
         }
 
         public override nint NumberOfSections(UITableView tableView)

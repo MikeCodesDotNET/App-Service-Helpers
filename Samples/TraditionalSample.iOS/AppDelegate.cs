@@ -3,6 +3,7 @@ using AppServiceHelpers.Abstractions;
 using Foundation;
 using UIKit;
 using TraditionalSample.iOS.Models;
+using AppServiceHelpers.Utils;
 
 namespace TraditionalSample.iOS
 {
@@ -25,9 +26,9 @@ namespace TraditionalSample.iOS
             // If not required for your application you can safely delete this method
 
             //Required for Azure 
-            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-            SQLitePCL.CurrentPlatform.Init();
-return true;
+            CurrentPlatform.Init();
+
+            return true;
         }
 
         public override void OnResignActivation(UIApplication application)
