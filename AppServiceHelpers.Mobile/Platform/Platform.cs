@@ -47,9 +47,7 @@ namespace AppServiceHelpers
 
 			throw new InvalidOperationException(
 				string.Format(CultureInfo.InvariantCulture,
-							  "A Microsoft Azure Mobile Services assembly for the current platform was not found. Ensure that the current project references both {0} and the following platform-specific assembly: {1}.",
-							portable.Name,
-							PlatformAssemblyName));
+				              $"An App Service Helpers assembly for the current platform was not found. Ensure that the current project references both {portable.Name} and the following platform-specific assembly: {PlatformAssemblyName})."));
 		}
 	}
 }

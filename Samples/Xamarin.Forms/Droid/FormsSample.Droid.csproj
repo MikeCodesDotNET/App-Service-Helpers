@@ -137,8 +137,8 @@
       <Project>{33F1E859-A0A4-499B-B4EB-E23ADAE53621}</Project>
       <Name>AppServiceHelpers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\AppServiceHelpers.Platform.Android\AppServiceHelpers.Ext.Android.csproj">
-      <Project>{90118A75-7F4C-4211-94B5-17E29A46E880}</Project>
+    <ProjectReference Include="..\..\..\AppServiceHelpers.Ext.Android\AppServiceHelpers.Ext.Android.csproj">
+      <Project>{14B06CD4-C86D-4EC1-9408-6B78B2F7107F}</Project>
       <Name>AppServiceHelpers.Ext.Android</Name>
     </ProjectReference>
   </ItemGroup>

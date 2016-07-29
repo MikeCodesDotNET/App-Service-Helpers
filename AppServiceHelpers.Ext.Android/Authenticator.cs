@@ -42,7 +42,7 @@ namespace AppServiceHelpers
 						{ "authenticationToken", authenticationToken }
 					};
 
-					await AccountStore.Create().SaveAsync(new Account(userId, keys), provider.ToString());
+					// await AccountStore.Create().SaveAsync(new Account(userId, keys), provider.ToString());
 
 					success = true;
 				}

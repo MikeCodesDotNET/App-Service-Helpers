@@ -18,6 +18,8 @@ namespace AppServiceHelpers
 		public static void Init(Context context)
 		{
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+
+			Context = context;
 		}
 	}
 }
