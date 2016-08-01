@@ -29,7 +29,8 @@ namespace AppServiceHelpers
 				try
 				{
 					// TODO: Delete cached token.
-					// TODO: Attempt to refresh the token. If fails, prompt login;
+
+					// Attempt to use the /.auth/refresh endpoint to generate a new authentication token.
 					await client.RefreshUserAsync();
 
 					clonedRequest = await CloneRequestAsync(request);
@@ -37,8 +38,14 @@ namespace AppServiceHelpers
 					clonedRequest.Headers.Add("X-XUMO-AUTH", client.CurrentUser.MobileServiceAuthenticationToken);
 
 					response = await base.SendAsync(clonedRequest, cancellationToken);
-
-					// TODO: Store the new token, if successful.
+					if (response.StatusCode != HttpStatusCode.Unauthorized)
+					{
+						// TODO: Response worked - store the token.
+					}
+					else
+					{
+						// TODO: Prompt the user for web auth login.
+					}
 				}
 				catch (MobileServiceInvalidOperationException ex)
 				{
