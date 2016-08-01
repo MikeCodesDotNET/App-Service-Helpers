@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -36,7 +36,7 @@
     <Compile Include="Logger.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppServiceHelpers.Mobile\AppServiceHelpers.csproj">
+    <ProjectReference Include="..\..\AppServiceHelpers.Mobile\AppServiceHelpers.csproj">
       <Project>{33F1E859-A0A4-499B-B4EB-E23ADAE53621}</Project>
       <Name>AppServiceHelpers</Name>
     </ProjectReference>
