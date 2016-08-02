@@ -1,8 +1,6 @@
 ﻿using AppServiceHelpers.Authentication;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Security;
 using Foundation;
 using System.Linq;
