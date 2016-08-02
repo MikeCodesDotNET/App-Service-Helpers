@@ -6,6 +6,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Auth;
 
 using UIKit;
+using AppServiceHelpers.Authentication;
 
 namespace AppServiceHelpers
 {
@@ -39,8 +40,7 @@ namespace AppServiceHelpers
 						{ "authenticationToken", userId }
 					};
 
-					//await AccountStore.Create().SaveAsync(new Account(userId, keys), provider.ToString());
-
+					Ext.iOS.AccountStore.Create().Save(new Account(userId, keys), provider.ToString());
 					success = true;
 				}
 			}
