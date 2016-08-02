@@ -93,6 +93,5 @@ namespace AppServiceHelpers
                 throw new Exception("Could not delete account from Keychain: " + statusCode);
             }
         }
-
     }
 }
