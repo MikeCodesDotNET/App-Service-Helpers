@@ -7,7 +7,7 @@ using Security;
 using Foundation;
 using System.Linq;
 
-namespace AppServiceHelpers.Ext.iOS
+namespace AppServiceHelpers
 {
     internal class AccountStore : IAccountStore
     {

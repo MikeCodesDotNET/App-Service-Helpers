@@ -14,7 +14,7 @@ using Java.Security;
 using Java.IO;
 using Javax.Crypto;
 
-namespace AppServiceHelpers.Ext.Android
+namespace AppServiceHelpers
 {
     internal class AccountStore : IAccountStore
     {

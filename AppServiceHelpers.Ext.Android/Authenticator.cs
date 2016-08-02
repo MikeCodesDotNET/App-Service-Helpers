@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Auth;
+using AppServiceHelpers.Authentication;
 
 namespace AppServiceHelpers
 {
@@ -42,7 +43,7 @@ namespace AppServiceHelpers
 						{ "authenticationToken", authenticationToken }
 					};
 
-					// await AccountStore.Create().SaveAsync(new Account(userId, keys), provider.ToString());
+					AccountStore.Create(CurrentPlatform.Context).Save(new Account(userId, keys), provider.ToString());
 
 					success = true;
 				}
