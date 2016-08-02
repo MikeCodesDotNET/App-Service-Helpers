@@ -40,7 +40,7 @@ namespace AppServiceHelpers
 						{ "authenticationToken", userId }
 					};
 
-					Ext.iOS.AccountStore.Create().Save(new Account(userId, keys), provider.ToString());
+					AccountStore.Create().Save(new Account(userId, keys), provider.ToString());
 					success = true;
 				}
 			}

@@ -42,11 +42,9 @@
     <Compile Include="Abstractions\ITableDataStore.cs" />
     <Compile Include="EasyMobileServiceClient.cs" />
     <Compile Include="Abstractions\IEasyMobileServiceClient.cs" />
-    <Compile Include="Models\EntityDataAlwaysLatest.cs" />
     <Compile Include="Helpers\ObservableRangeCollection.cs" />
     <Compile Include="Helpers\ConnectedObservableCollection.cs" />
     <Compile Include="Authentication\AuthenticationHandler.cs" />
-    <Compile Include="Authentication\TokenStore.cs" />
     <Compile Include="Abstractions\ILogger.cs" />
     <Compile Include="Platform\Platform.cs" />
     <Compile Include="Platform\IPlatform.cs" />
