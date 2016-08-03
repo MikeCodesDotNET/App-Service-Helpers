@@ -27,7 +27,24 @@ namespace AppServiceHelpers
 
 			try
 			{
-				var user = await client.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController, provider);
+				var dictionary = new Dictionary<string, string>();
+				switch (provider)
+				{
+					// Does not support refresh token concept with server-flow authentication.
+					case MobileServiceAuthenticationProvider.Facebook:
+					case MobileServiceAuthenticationProvider.Twitter:
+					// Supports refresh token concept, but all configuration is server-side.
+					case MobileServiceAuthenticationProvider.MicrosoftAccount:
+						break;
+					case MobileServiceAuthenticationProvider.Google:
+						dictionary.Add("access_type", "offline");
+						break;
+					case MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory:
+						dictionary.Add("response_type", "code id_token");
+						break;
+				}
+
+				var user = await client.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController, provider, dictionary);
 
 				if (user != null)
 				{

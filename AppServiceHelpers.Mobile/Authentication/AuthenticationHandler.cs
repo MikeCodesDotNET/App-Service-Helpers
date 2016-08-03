@@ -30,6 +30,7 @@ namespace AppServiceHelpers
 				{
 					// TODO: Delete cached token.
 
+
 					// Attempt to use the /.auth/refresh endpoint to generate a new authentication token.
 					await client.RefreshUserAsync();
 
