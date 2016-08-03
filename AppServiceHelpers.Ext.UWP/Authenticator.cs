@@ -51,7 +51,8 @@ namespace AppServiceHelpers
                     var keys = new Dictionary<string, string>
                     {
                         { "userId", authenticationToken },
-                        { "authenticationToken", userId }
+                        { "authenticationToken", userId },
+						{ "identityProvider", provider.ToString() }
                     };
 
                     //await AccountStore.Create().SaveAsync(new Account(userId, keys), provider.ToString());

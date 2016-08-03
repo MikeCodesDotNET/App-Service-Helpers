@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.WindowsAzure.MobileServices;
@@ -36,6 +37,7 @@ namespace AppServiceHelpers
 					// Supports refresh token concept, but all configuration is server-side.
 					case MobileServiceAuthenticationProvider.MicrosoftAccount:
 						break;
+					// Supports refresh token concept, but need to add additional scopes.
 					case MobileServiceAuthenticationProvider.Google:
 						dictionary.Add("access_type", "offline");
 						break;
@@ -53,11 +55,12 @@ namespace AppServiceHelpers
 
 					var keys = new Dictionary<string, string>
 					{
-						{ "userId", authenticationToken },
-						{ "authenticationToken", userId }
+						{ "userId", userId },
+						{ "authenticationToken", authenticationToken },
+						{ "identityProvider", provider.ToString() }
 					};
 
-					AccountStore.Create().Save(new Account(userId, keys), provider.ToString());
+					AccountStore.Create().Save(new Account(userId, keys), "appServiceHelpers");
 					success = true;
 				}
 			}
@@ -68,6 +71,34 @@ namespace AppServiceHelpers
 
 			return success;
 		}
+
+		public bool UserPreviouslyAuthenticated => string.IsNullOrEmpty(AccountStore.Create().FindAccountsForProvider("appServiceHelpers").First().Properties["identityProvider"]);
+
+		public MobileServiceAuthenticationProvider FindIdentityProvider()
+		{
+			var account = AccountStore.Create().FindAccountsForProvider("appServiceHelpers").First();
+
+			var identityProvider = account.Properties["identityProvider"];
+			switch (identityProvider)
+			{
+				case "Facebook":
+					return MobileServiceAuthenticationProvider.Facebook;
+				case "Twitter":
+					return MobileServiceAuthenticationProvider.Twitter;
+				case "Google":
+					return MobileServiceAuthenticationProvider.Google;
+				case "MicrosoftAccount":
+					return MobileServiceAuthenticationProvider.MicrosoftAccount;
+				case "WindowsAzureActiveDirectory":
+					return MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory;
+			}
+
+			return MobileServiceAuthenticationProvider.Google;
+		}
+
+		public Dictionary<string, string> LoadCachedUserCredentials()
+		{
+			return AccountStore.Create().FindAccountsForProvider("appServiceHelpers").FirstOrDefault()?.Properties;
+		}
 	}
 }
- 

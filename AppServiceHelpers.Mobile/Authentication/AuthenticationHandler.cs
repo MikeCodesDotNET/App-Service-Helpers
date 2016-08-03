@@ -10,12 +10,7 @@ namespace AppServiceHelpers
 {
 	public class AuthenticationHandler : DelegatingHandler
 	{
-		IMobileServiceClient client;
-
-		public AuthenticationHandler(IMobileServiceClient client)
-		{
-			this.client = client;
-		}
+		public IMobileServiceClient Client { get; set; }
 
 		protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, System.Threading.CancellationToken cancellationToken)
 		{
@@ -28,24 +23,27 @@ namespace AppServiceHelpers
 			{
 				try
 				{
-					// TODO: Delete cached token.
-
-
 					// Attempt to use the /.auth/refresh endpoint to generate a new authentication token.
-					await client.RefreshUserAsync();
+					await Client.RefreshUserAsync();
 
+					// Re-clone the original request, update the headers, and re-issue the cloned request.
 					clonedRequest = await CloneRequestAsync(request);
 					clonedRequest.Headers.Remove("X-ZUMO-AUTH");
-					clonedRequest.Headers.Add("X-XUMO-AUTH", client.CurrentUser.MobileServiceAuthenticationToken);
-
+					clonedRequest.Headers.Add("X-XUMO-AUTH", Client.CurrentUser.MobileServiceAuthenticationToken);
 					response = await base.SendAsync(clonedRequest, cancellationToken);
-					if (response.StatusCode != HttpStatusCode.Unauthorized)
+
+					// Refresh token didn't work or does not exist, prompt user to re-authenticate.
+					if (response.StatusCode == HttpStatusCode.Unauthorized)
 					{
-						// TODO: Response worked - store the token.
-					}
-					else
-					{
-						// TODO: Prompt the user for web auth login.
+						// Was the user previously authenticated, at any time?
+						var authenticator = Platform.Instance.Authenticator;
+						if (authenticator.UserPreviouslyAuthenticated)
+						{
+							var provider = authenticator.FindIdentityProvider();
+							await authenticator.LoginAsync(Client, provider);
+						}
+						else
+							throw new UnauthorizedAccessException("User is not authenticated.");
 					}
 				}
 				catch (MobileServiceInvalidOperationException ex)
@@ -83,44 +81,3 @@ namespace AppServiceHelpers
 		}
 	}
 }
-
-/*
-
-        public static async Task DoLoginAsync(Settings.AuthOption authOption)
-        {
-            if (authOption == Settings.AuthOption.GuestAccess) {
-                Settings.Current.CurrentUserId = Settings.Current.DefaultUserId;
-                return; // can't authenticate
-            }
-
-            var mobileClient = DependencyService.Get<IPlatform>();
-
-            var user =
-                authOption == Settings.AuthOption.Facebook ?
-                    await LoginFacebookAsync(mobileClient) :
-                    await mobileClient.LoginAsync(MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory);
-
-            App.Instance.AuthenticatedUser = user;
-            System.Diagnostics.Debug.WriteLine("Authenticated with user: " + user.UserId);
-
-            Settings.Current.CurrentUserId =
-                await App.Instance.MobileService.InvokeApiAsync<string>(
-                "ManageUser",
-                System.Net.Http.HttpMethod.Get,
-                null);
-
-            Debug.WriteLine($"Set current userID to: {Settings.Current.CurrentUserId}");
-
-            AuthStore.CacheAuthToken(user);
-        }
-
-        private static Task<MobileServiceUser> LoginFacebookAsync(IPlatform mobileClient)
-        {
-            // use server flow if the service URL has been customized
-            return Settings.IsDefaultServiceUrl() ?
-                mobileClient.LoginFacebookAsync() :
-                mobileClient.LoginAsync(MobileServiceAuthenticationProvider.Facebook);
-        }
-    }
-}*/
-

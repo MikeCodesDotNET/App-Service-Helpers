@@ -59,15 +59,18 @@ namespace AppServiceHelpers
 
 			store = new MobileServiceSQLiteStore("app.db");
 
-			MobileService = new MobileServiceClient(Url, null)
+			var authenticationHandler = new AuthenticationHandler();
+			MobileService = new MobileServiceClient(Url, authenticationHandler)
 			{
 				SerializerSettings = new MobileServiceJsonSerializerSettings()
 				{
 					CamelCasePropertyNames = true
 				}
 			};
+			authenticationHandler.Client = MobileService;
 
 			tables = new Dictionary<string, BaseTableDataStore>();
+			LoadCachedUserCredentials();
 
 			initialized = true;
 		}
@@ -83,6 +86,7 @@ namespace AppServiceHelpers
 
 			MobileService = client;
 			tables = new Dictionary<string, BaseTableDataStore>();
+			LoadCachedUserCredentials();
 
 			initialized = true;
 		}
@@ -142,8 +146,6 @@ namespace AppServiceHelpers
 		}
 
 		#region Authentication
-		// TODO: 1. Handle token store.
-		// 2. Handle refresh scenarios.
 		public async Task<bool> LoginAsync(MobileServiceAuthenticationProvider provider)
 		{
 			var authenticator = Platform.Instance.Authenticator;
@@ -151,5 +153,19 @@ namespace AppServiceHelpers
 			return await authenticator.LoginAsync(MobileService, provider);
 		}
 		#endregion
+
+		void LoadCachedUserCredentials()
+		{
+			var authenticator = Platform.Instance.Authenticator;
+			var credentials = authenticator.LoadCachedUserCredentials();
+
+			if (credentials != null 
+			    && credentials.ContainsKey("userId") 
+			    && credentials.ContainsKey("authenticationToken"))
+			{
+				MobileService.CurrentUser.UserId = credentials["userId"];
+				MobileService.CurrentUser.MobileServiceAuthenticationToken = credentials["authenticationToken"];
+			}
+		}
 	}
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Xamarin.Auth;
 using AppServiceHelpers.Authentication;
+using System.Linq;
 
 namespace AppServiceHelpers
 {
@@ -57,10 +58,11 @@ namespace AppServiceHelpers
 					var keys = new Dictionary<string, string>
 					{
 						{ "userId", userId },
-						{ "authenticationToken", authenticationToken }
+						{ "authenticationToken", authenticationToken },
+						{ "identityProvider", provider.ToString() }
 					};
 
-					AccountStore.Create(CurrentPlatform.Context).Save(new Account(userId, keys), provider.ToString());
+					AccountStore.Create(CurrentPlatform.Context).Save(new Account(userId, keys), "appServiceHelpers");
 
 					success = true;
 				}
@@ -71,6 +73,35 @@ namespace AppServiceHelpers
 			}
 
 			return success;
+		}
+
+		public bool UserPreviouslyAuthenticated => string.IsNullOrEmpty(AccountStore.Create(CurrentPlatform.Context).FindAccountsForProvider("appServiceHelpers").First().Properties["identityProvider"]);
+
+		public MobileServiceAuthenticationProvider FindIdentityProvider()
+		{
+			var account = AccountStore.Create(CurrentPlatform.Context).FindAccountsForProvider("appServiceHelpers").First();
+
+			var identityProvider = account.Properties["identityProvider"];
+			switch (identityProvider)
+			{
+				case "Facebook":
+					return MobileServiceAuthenticationProvider.Facebook;
+				case "Twitter":
+					return MobileServiceAuthenticationProvider.Twitter;
+				case "Google":
+					return MobileServiceAuthenticationProvider.Google;
+				case "MicrosoftAccount":
+					return MobileServiceAuthenticationProvider.MicrosoftAccount;
+				case "WindowsAzureActiveDirectory":
+					return MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory;
+			}
+
+			return MobileServiceAuthenticationProvider.Google;
+		}
+
+		public Dictionary<string, string> LoadCachedUserCredentials()
+		{
+			return AccountStore.Create(CurrentPlatform.Context).FindAccountsForProvider("appServiceHelpers").FirstOrDefault()?.Properties;
 		}
 	}
 }
