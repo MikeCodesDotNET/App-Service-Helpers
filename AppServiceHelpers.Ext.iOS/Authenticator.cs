@@ -72,7 +72,7 @@ namespace AppServiceHelpers
 			return success;
 		}
 
-		public bool UserPreviouslyAuthenticated => string.IsNullOrEmpty(AccountStore.Create().FindAccountsForProvider("appServiceHelpers").First().Properties["identityProvider"]);
+		public bool UserPreviouslyAuthenticated => string.IsNullOrEmpty(AccountStore.Create().FindAccountsForProvider("appServiceHelpers").FirstOrDefault()?.Properties["identityProvider"]);
 
 		public MobileServiceAuthenticationProvider FindIdentityProvider()
 		{
