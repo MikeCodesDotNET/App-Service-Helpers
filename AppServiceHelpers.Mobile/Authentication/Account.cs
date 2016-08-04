@@ -57,7 +57,8 @@ namespace AppServiceHelpers.Authentication
                 }
                 else
                 {
-                    acct.Properties[key] = val;
+					if (acct.Properties != null)
+                    	acct.Properties[key] = val;
                 }
             }
 

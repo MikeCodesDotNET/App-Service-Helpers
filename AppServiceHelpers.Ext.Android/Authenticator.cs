@@ -101,7 +101,14 @@ namespace AppServiceHelpers
 
 		public Dictionary<string, string> LoadCachedUserCredentials()
 		{
-			return AccountStore.Create(CurrentPlatform.Context).FindAccountsForProvider("appServiceHelpers").FirstOrDefault()?.Properties;
+			if (AccountStore.Create(CurrentPlatform.Context).FindAccountsForProvider("appServiceHelpers").FirstOrDefault() != null)
+			{
+				return AccountStore.Create(CurrentPlatform.Context).FindAccountsForProvider("appServiceHelpers").FirstOrDefault()?.Properties;
+			}
+			else
+			{
+				return null;
+			}
 		}
 	}
 }
