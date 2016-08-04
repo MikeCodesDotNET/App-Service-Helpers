@@ -20,8 +20,6 @@ namespace AppServiceHelpers
                 Password = account["authenticationToken"],
                 Resource = $"appServiceHelpers/{account["identityProvider"]}"
             });
-
-            System.Diagnostics.Debug.Write("TEST");
         }
 
         public static Dictionary<string, string> GetAccount()
