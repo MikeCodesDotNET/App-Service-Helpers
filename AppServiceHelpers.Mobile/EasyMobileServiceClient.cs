@@ -163,7 +163,7 @@ namespace AppServiceHelpers
 			    && credentials.ContainsKey("userId") 
 			    && credentials.ContainsKey("authenticationToken"))
 			{
-				MobileService.CurrentUser.UserId = credentials["userId"];
+                MobileService.CurrentUser = new MobileServiceUser(credentials["userId"]);
 				MobileService.CurrentUser.MobileServiceAuthenticationToken = credentials["authenticationToken"];
 			}
 		}

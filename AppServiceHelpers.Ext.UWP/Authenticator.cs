@@ -18,6 +18,27 @@ namespace AppServiceHelpers
             }
         }
 
+        public bool UserPreviouslyAuthenticated
+        {
+            get
+            {
+                if (AccountStore.GetAccount() == null)
+                    return false;
+                else
+                    return true;
+            }
+        }
+
+        public MobileServiceAuthenticationProvider FindIdentityProvider()
+        {
+            return AccountStore.GetIdentityProvider();
+        }
+
+        public Dictionary<string, string> LoadCachedUserCredentials()
+        {
+            return AccountStore.GetAccount();
+        }
+
         public async Task<bool> LoginAsync(IMobileServiceClient client, MobileServiceAuthenticationProvider provider)
         {
             var success = false;
@@ -50,12 +71,12 @@ namespace AppServiceHelpers
 
                     var keys = new Dictionary<string, string>
                     {
-                        { "userId", authenticationToken },
-                        { "authenticationToken", userId },
+                        { "userId", userId },
+                        { "authenticationToken", authenticationToken },
 						{ "identityProvider", provider.ToString() }
                     };
 
-                    //await AccountStore.Create().SaveAsync(new Account(userId, keys), provider.ToString());
+                    AccountStore.SaveAccount(keys);
 
                     success = true;
                 }

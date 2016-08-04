@@ -108,6 +108,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountStore.cs" />
     <Compile Include="Authenticator.cs" />
     <Compile Include="CurrentPlatform.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
