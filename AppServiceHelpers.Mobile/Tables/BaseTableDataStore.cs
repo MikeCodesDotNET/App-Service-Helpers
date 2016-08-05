@@ -41,7 +41,11 @@ namespace AppServiceHelpers.Tables
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine($"Unable to sync items, that is alright as we have offline capabilities: {ex.Message}");
+                var logger = ServiceLocator.Instance.Resolve<ILogger>();
+                if (logger == null)
+                    System.Diagnostics.Debug.WriteLine($"Unable to sync items, that is alright as we have offline capabilities: {ex.Message}");
+                else
+                    logger.Report(ex);
             }
         }
 

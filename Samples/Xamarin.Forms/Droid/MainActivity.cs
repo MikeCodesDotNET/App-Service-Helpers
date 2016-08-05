@@ -21,6 +21,8 @@ namespace FormsSample.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+			AppServiceHelpers.CurrentPlatform.Init(Xamarin.Forms.Forms.Context);
+
 
             LoadApplication(new App());
         }

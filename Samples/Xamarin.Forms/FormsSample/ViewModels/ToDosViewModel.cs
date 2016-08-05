@@ -12,8 +12,10 @@ namespace FormsSample.ViewModels
 {
 	public class ToDosViewModel : BaseViewModel
     {
-        public ToDosViewModel(IEasyMobileServiceClient client)
+        public ToDosViewModel()
         {
+            var client = AppServiceHelpers.EasyMobileServiceClient.Current;
+
 			Todos = new ConnectedObservableCollection<ToDo>(client.Table<ToDo>());
 			ExecuteRefreshCommand();
         }

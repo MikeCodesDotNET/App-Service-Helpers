@@ -18,8 +18,7 @@ namespace FormsSample.iOS
 
             LoadApplication(new App());
 
-            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
-            SQLitePCL.CurrentPlatform.Init();
+			AppServiceHelpers.CurrentPlatform.Init();
 
             return base.FinishedLaunching(app, options);
         }

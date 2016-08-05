@@ -164,6 +164,10 @@
       <Project>{33F1E859-A0A4-499B-B4EB-E23ADAE53621}</Project>
       <Name>AppServiceHelpers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\AppServiceHelpers.Ext.iOS\AppServiceHelpers.Ext.iOS.csproj">
+      <Project>{0548D193-073F-482C-B46F-E4DDC16BB358}</Project>
+      <Name>AppServiceHelpers.Ext.iOS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
