@@ -49,6 +49,7 @@
     <Compile Include="Platform\Platform.cs" />
     <Compile Include="Platform\IPlatform.cs" />
     <Compile Include="Platform\IAuthenticator.cs" />
+    <Compile Include="Tables\ConflictResolutionStrategy.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

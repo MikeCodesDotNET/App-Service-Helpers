@@ -26,6 +26,9 @@ namespace AppServiceHelpers.Tables
 			get { return table ?? (table = serviceClient.MobileService.GetSyncTable<T>()); }
         }
 
+		public ConflictResolutionStrategy ConflictResolutionStrategy { get; set; }
+		public delegate ConflictResolutionStrategy ResolveConflict<T>(T localVersion, T serverVersion);
+
 		public virtual void Initialize(IEasyMobileServiceClient client)
 		{
 			serviceClient = client;
@@ -33,42 +36,75 @@ namespace AppServiceHelpers.Tables
 
         public async virtual Task Sync()
         {
-            try
-            {
-				await serviceClient.MobileService.SyncContext.PushAsync();
-                await Table.PullAsync($"all{identifier}", Table.CreateQuery());
-
-            }
-            catch (Exception ex)
-            {
-                var logger = ServiceLocator.Instance.Resolve<ILogger>();
-                if (logger == null)
-                    System.Diagnostics.Debug.WriteLine($"Unable to sync items, that is alright as we have offline capabilities: {ex.Message}");
-                else
-                    logger.Report(ex);
-            }
+			await serviceClient.MobileService.SyncContext.PushAsync();
+			await Table.PullAsync($"all{identifier}", Table.CreateQuery());
         }
 
         public async virtual Task<bool> AddAsync(T item)
         {
-            await Table.InsertAsync(item);
-            await Sync();
+			try
+			{
+				await Table.InsertAsync(item);
+				await Sync();
+			}
+			catch (MobileServicePreconditionFailedException<T> ex)
+			{
+				var localVersion = item;
+				var serverVersion = ex.Item;
+
+				// Is anyone on the invocation list for the delegate?
+					// Yes, this means that the user opted for custom data stores.
+						// Call the subscribed delegate, grab the return value.
+						// Pass return value to Resolve method to do heavy lifting.
+					// No, this means the user is opting for default conflict handling.
+						// Call Resolve method with ConflictResolutionHandler property as parameter.
+			}
 
             return true;
         }
 
         public async virtual Task<bool> UpdateAsync(T item)
         {
-            await Table.UpdateAsync(item);
-            await Sync();
+			try
+			{
+				await Table.UpdateAsync(item);
+				await Sync();
+			}
+			catch (MobileServicePreconditionFailedException<T> ex)
+			{
+				var localVersion = item;
+				var serverVersion = ex.Item;
+
+				// Is anyone on the invocation list for the delegate?
+					// Yes, this means that the user opted for custom data stores.
+						// Call the subscribed delegate, grab the return value.
+						// Pass return value to Resolve method to do heavy lifting.
+					// No, this means the user is opting for default conflict handling.
+						// Call Resolve method with ConflictResolutionHandler property as parameter.
+			}
 
             return true;
         }
 
         public async virtual Task<bool> DeleteAsync(T item)
         {
-            await Table.DeleteAsync(item);
-            await Sync();
+			try
+			{
+				await Table.DeleteAsync(item);
+				await Sync();
+			}
+			catch (MobileServicePreconditionFailedException<T> ex)
+			{
+				var localVersion = item;
+				var serverVersion = ex.Item;
+
+				// Is anyone on the invocation list for the delegate?
+				// Yes, this means that the user opted for custom data stores.
+				// Call the subscribed delegate, grab the return value.
+				// Pass return value to Resolve method to do heavy lifting.
+				// No, this means the user is opting for default conflict handling.
+				// Call Resolve method with ConflictResolutionHandler property as parameter.
+			}
 
             return true;
         }
@@ -100,5 +136,23 @@ namespace AppServiceHelpers.Tables
             var results = query.ToListAsync().Result;
             return results.Count;
         }
+
+		// Internal method for handling actual logic of conflict resolution strategy.
+		bool Resolve<T>(T localVersion, T serverVersion)
+		{
+			// To resolve the conflict, update the version of the item being committed. Otherwise, you will keep
+			// catching a MobileServicePreConditionFailedException.
+			// localItem.Version = serverItem.Version;
+
+			// Client wins
+				// Update the version in our record to match version in server, then repush.
+				// localVersion.Version = serverVersion.Version;
+			// Server wins
+				// Copy the entire record from server into list.
+			// Latest wins
+				// Which version was last write done?
+	
+			return true;
+		}
     }
 }
