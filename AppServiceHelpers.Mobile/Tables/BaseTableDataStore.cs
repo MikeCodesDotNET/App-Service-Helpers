@@ -6,13 +6,13 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 
 using AppServiceHelpers.Abstractions;
-using AppServiceHelpers.Utils;
 
 namespace AppServiceHelpers.Tables
 {
+	public delegate ConflictResolutionStrategy ResolveConflictDelegate<T>(T localVersion, T serverVersion);
+
 	public abstract class BaseTableDataStore
 	{
-
 	}
 
 	public class BaseTableDataStore<T> : BaseTableDataStore, ITableDataStore<T> where T : Models.EntityData
@@ -27,7 +27,7 @@ namespace AppServiceHelpers.Tables
         }
 
 		public ConflictResolutionStrategy ConflictResolutionStrategy { get; set; }
-		public delegate ConflictResolutionStrategy ResolveConflict<T>(T localVersion, T serverVersion);
+		public ResolveConflictDelegate<T> ConflictResolutionStrategyDelegate { get; set; }
 
 		public virtual void Initialize(IEasyMobileServiceClient client)
 		{
@@ -52,12 +52,7 @@ namespace AppServiceHelpers.Tables
 				var localVersion = item;
 				var serverVersion = ex.Item;
 
-				// Is anyone on the invocation list for the delegate?
-					// Yes, this means that the user opted for custom data stores.
-						// Call the subscribed delegate, grab the return value.
-						// Pass return value to Resolve method to do heavy lifting.
-					// No, this means the user is opting for default conflict handling.
-						// Call Resolve method with ConflictResolutionHandler property as parameter.
+				await Resolve(localVersion, serverVersion);
 			}
 
             return true;
@@ -75,12 +70,7 @@ namespace AppServiceHelpers.Tables
 				var localVersion = item;
 				var serverVersion = ex.Item;
 
-				// Is anyone on the invocation list for the delegate?
-					// Yes, this means that the user opted for custom data stores.
-						// Call the subscribed delegate, grab the return value.
-						// Pass return value to Resolve method to do heavy lifting.
-					// No, this means the user is opting for default conflict handling.
-						// Call Resolve method with ConflictResolutionHandler property as parameter.
+				await Resolve(localVersion, serverVersion);
 			}
 
             return true;
@@ -98,12 +88,7 @@ namespace AppServiceHelpers.Tables
 				var localVersion = item;
 				var serverVersion = ex.Item;
 
-				// Is anyone on the invocation list for the delegate?
-				// Yes, this means that the user opted for custom data stores.
-				// Call the subscribed delegate, grab the return value.
-				// Pass return value to Resolve method to do heavy lifting.
-				// No, this means the user is opting for default conflict handling.
-				// Call Resolve method with ConflictResolutionHandler property as parameter.
+				await Resolve(localVersion, serverVersion);
 			}
 
             return true;
@@ -137,22 +122,54 @@ namespace AppServiceHelpers.Tables
             return results.Count;
         }
 
-		// Internal method for handling actual logic of conflict resolution strategy.
-		bool Resolve<T>(T localVersion, T serverVersion)
+		async Task<bool> Resolve(T localVersion, T serverVersion)
 		{
-			// To resolve the conflict, update the version of the item being committed. Otherwise, you will keep
-			// catching a MobileServicePreConditionFailedException.
-			// localItem.Version = serverItem.Version;
+			// Is anyone on the invocation list for the delegate? If so, user opted for custom
+			// conflict handling instead of automatic.
+			var strategy = ConflictResolutionStrategy;
+			if (ConflictResolutionStrategyDelegate != null &&
+				ConflictResolutionStrategyDelegate.GetInvocationList().Length > 0)
+			{
+				strategy = ConflictResolutionStrategyDelegate.Invoke(localVersion, serverVersion);
+			}
 
-			// Client wins
-				// Update the version in our record to match version in server, then repush.
-				// localVersion.Version = serverVersion.Version;
-			// Server wins
-				// Copy the entire record from server into list.
-			// Latest wins
-				// Which version was last write done?
-	
-			return true;
+			// Handle the actual conflict.
+			var result = false;
+			switch (strategy)
+			{
+				// Set local version to server version.
+				case ConflictResolutionStrategy.ClientWins:
+					{
+						localVersion.Version = serverVersion.Version;
+						await Sync();
+
+						result = true;
+
+						break;
+					}
+				// Copy entire record from server to local copy.
+				case ConflictResolutionStrategy.ServerWins:
+					{
+						localVersion = serverVersion;
+						await Sync();
+
+						result = true;
+
+						break;
+					}
+				// Which version was the latest write done?
+				case ConflictResolutionStrategy.LatestWins:
+					{
+						localVersion.Version = serverVersion.Version;
+						await Sync();
+
+						result = true;
+
+						break;
+					}
+			}
+
+			return result;
 		}
     }
 }
