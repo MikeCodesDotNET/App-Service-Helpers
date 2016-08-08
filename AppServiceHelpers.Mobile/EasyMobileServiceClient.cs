@@ -105,6 +105,21 @@ namespace AppServiceHelpers
 		}
 
 		/// <summary>
+		/// Register a data model with EasyMobileServiceClient to create a table.
+		/// </summary>
+		/// <param name="conflictResolutionHandler">Select which conflict resolution strategy is best on a per-conflict basis.</param>
+		/// <typeparam name="A">The 1st type parameter.</typeparam>
+		public void RegisterTable<A>(ResolveConflictDelegate<A> conflictResolutionHandler) where A : EntityData
+		{
+			store.DefineTable<A>();
+
+			var table = new BaseTableDataStore<A>();
+			table.Initialize(this);
+			table.ConflictResolutionStrategyDelegate = conflictResolutionHandler;
+			tables.Add(typeof(A).Name, table);
+		}
+
+		/// <summary>
 		/// Register a custom data store with EasyMobileServiceClient to create a table.
 		/// </summary>
 		/// <returns>The table.</returns>
@@ -116,6 +131,22 @@ namespace AppServiceHelpers
 
 			var table = new B();
 			table.Initialize(this);
+			tables.Add(typeof(A).Name, table);
+		}
+
+		/// <summary>
+		/// Register a custom data store with EasyMobileServiceClient to create a table.
+		/// </summary>
+		/// <param name="conflictResolutionHandler">Conflict resolution handler.</param>
+		/// <typeparam name="A">The data model used to create table schema.</typeparam>
+		/// <typeparam name="B">A custom implementation of BaseTableDataStore. For default behavior, use RegisterTable<A>.</typeparam>
+		public void RegisterTable<A, B>(ResolveConflictDelegate<A> conflictResolutionHandler) where A : EntityData where B : BaseTableDataStore<A>, new()
+		{
+			store.DefineTable<A>();
+
+			var table = new B();
+			table.Initialize(this);
+			table.ConflictResolutionStrategyDelegate = conflictResolutionHandler;
 			tables.Add(typeof(A).Name, table);
 		}
 

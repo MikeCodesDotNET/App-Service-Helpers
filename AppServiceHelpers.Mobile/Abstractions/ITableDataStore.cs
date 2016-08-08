@@ -6,6 +6,8 @@ namespace AppServiceHelpers.Abstractions
 {
     public interface ITableDataStore<T>
     {
+		ConflictResolutionStrategy ConflictResolutionStrategy { get; set; }
+
 		void Initialize(IEasyMobileServiceClient client);
 
         Task<IEnumerable<T>> GetItemsAsync();

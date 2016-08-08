@@ -6,13 +6,13 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 
 using AppServiceHelpers.Abstractions;
-using AppServiceHelpers.Utils;
 
 namespace AppServiceHelpers.Tables
 {
+	public delegate ConflictResolutionStrategy ResolveConflictDelegate<T>(T localVersion, T serverVersion);
+
 	public abstract class BaseTableDataStore
 	{
-
 	}
 
 	public class BaseTableDataStore<T> : BaseTableDataStore, ITableDataStore<T> where T : Models.EntityData
@@ -26,6 +26,9 @@ namespace AppServiceHelpers.Tables
 			get { return table ?? (table = serviceClient.MobileService.GetSyncTable<T>()); }
         }
 
+		public ConflictResolutionStrategy ConflictResolutionStrategy { get; set; }
+		public ResolveConflictDelegate<T> ConflictResolutionStrategyDelegate { get; set; }
+
 		public virtual void Initialize(IEasyMobileServiceClient client)
 		{
 			serviceClient = client;
@@ -33,42 +36,60 @@ namespace AppServiceHelpers.Tables
 
         public async virtual Task Sync()
         {
-            try
-            {
-				await serviceClient.MobileService.SyncContext.PushAsync();
-                await Table.PullAsync($"all{identifier}", Table.CreateQuery());
-
-            }
-            catch (Exception ex)
-            {
-                var logger = ServiceLocator.Instance.Resolve<ILogger>();
-                if (logger == null)
-                    System.Diagnostics.Debug.WriteLine($"Unable to sync items, that is alright as we have offline capabilities: {ex.Message}");
-                else
-                    logger.Report(ex);
-            }
+			await serviceClient.MobileService.SyncContext.PushAsync();
+			await Table.PullAsync($"all{identifier}", Table.CreateQuery());
         }
 
         public async virtual Task<bool> AddAsync(T item)
         {
-            await Table.InsertAsync(item);
-            await Sync();
+			try
+			{
+				await Table.InsertAsync(item);
+				await Sync();
+			}
+			catch (MobileServicePreconditionFailedException<T> ex)
+			{
+				var localVersion = item;
+				var serverVersion = ex.Item;
+
+				await Resolve(localVersion, serverVersion);
+			}
 
             return true;
         }
 
         public async virtual Task<bool> UpdateAsync(T item)
         {
-            await Table.UpdateAsync(item);
-            await Sync();
+			try
+			{
+				await Table.UpdateAsync(item);
+				await Sync();
+			}
+			catch (MobileServicePreconditionFailedException<T> ex)
+			{
+				var localVersion = item;
+				var serverVersion = ex.Item;
+
+				await Resolve(localVersion, serverVersion);
+			}
 
             return true;
         }
 
         public async virtual Task<bool> DeleteAsync(T item)
         {
-            await Table.DeleteAsync(item);
-            await Sync();
+			try
+			{
+				await Table.DeleteAsync(item);
+				await Sync();
+			}
+			catch (MobileServicePreconditionFailedException<T> ex)
+			{
+				var localVersion = item;
+				var serverVersion = ex.Item;
+
+				await Resolve(localVersion, serverVersion);
+			}
 
             return true;
         }
@@ -100,5 +121,55 @@ namespace AppServiceHelpers.Tables
             var results = query.ToListAsync().Result;
             return results.Count;
         }
+
+		async Task<bool> Resolve(T localVersion, T serverVersion)
+		{
+			// Is anyone on the invocation list for the delegate? If so, user opted for custom
+			// conflict handling instead of automatic.
+			var strategy = ConflictResolutionStrategy;
+			if (ConflictResolutionStrategyDelegate != null &&
+				ConflictResolutionStrategyDelegate.GetInvocationList().Length > 0)
+			{
+				strategy = ConflictResolutionStrategyDelegate.Invoke(localVersion, serverVersion);
+			}
+
+			// Handle the actual conflict.
+			var result = false;
+			switch (strategy)
+			{
+				// Set local version to server version.
+				case ConflictResolutionStrategy.ClientWins:
+					{
+						localVersion.Version = serverVersion.Version;
+						await Sync();
+
+						result = true;
+
+						break;
+					}
+				// Copy entire record from server to local copy.
+				case ConflictResolutionStrategy.ServerWins:
+					{
+						localVersion = serverVersion;
+						await Sync();
+
+						result = true;
+
+						break;
+					}
+				// Which version was the latest write done?
+				case ConflictResolutionStrategy.LatestWins:
+					{
+						localVersion.Version = serverVersion.Version;
+						await Sync();
+
+						result = true;
+
+						break;
+					}
+			}
+
+			return result;
+		}
     }
 }
