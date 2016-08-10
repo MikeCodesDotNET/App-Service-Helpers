@@ -5,8 +5,8 @@
 		<StackLayout Spacing="10" Padding="10">
 			<Label Text="What should I be doing?"></Label>
 			<Entry Text="{Binding Text}"></Entry>
-			<Label Text="Complete"></Label>
-			<Switch IsToggled="{Binding Complete}"></Switch>
+			<Label Text="Completed"></Label>
+			<Switch IsToggled="{Binding Completed}"></Switch>
 			<StackLayout VerticalOptions="CenterAndExpand"></StackLayout>
 			<StackLayout Orientation="Vertical" VerticalOptions="End">
 				<Button Text="Save" BackgroundColor="#A6E55E" TextColor="White" Command="{Binding SaveItemCommand}"></Button>

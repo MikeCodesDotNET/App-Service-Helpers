@@ -28,7 +28,7 @@ namespace FormsSample.ViewModels
             }
         }
 
-        public bool Complete
+        public bool Completed
         {
             get
             {
