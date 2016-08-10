@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Input;
+using Acr.UserDialogs;
 using AppServiceHelpers.Abstractions;
 using Xamarin.Forms;
 
@@ -61,6 +62,28 @@ namespace FormsSample.ViewModels
                     navigation.PopAsync();
                 });
                 return _saveItemCommand; ;
+            }
+        }
+
+        private ICommand _deleteItemCommand;
+        public ICommand DeleteItemCommand
+        {
+            get
+            {
+                _deleteItemCommand = _deleteItemCommand ?? new Command(async () =>
+                {
+                    var result = await UserDialogs.Instance.ConfirmAsync("Are you sure you want to delete this To Do?",
+                        "Delete To Do");
+                    if (!result)
+                    {
+                        return;
+                    }
+                    await DeleteItemAsync(todo);
+
+                    var navigation = Application.Current.MainPage as NavigationPage;
+                    navigation.PopAsync();
+                });
+                return _deleteItemCommand; ;
             }
         }
     }
