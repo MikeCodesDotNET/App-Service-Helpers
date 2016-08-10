@@ -16,7 +16,7 @@
 						<ViewCell>
                         	<StackLayout Padding="10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                             	<Label Text="{Binding Text}" TextColor="#272832" HorizontalOptions="FillAndExpand"/>
-								<Switch IsToggled="{Binding Complete}"/>
+								<Switch IsToggled="{Binding Completed}"/>
                         	</StackLayout>
                     	</ViewCell>
 					</DataTemplate>
