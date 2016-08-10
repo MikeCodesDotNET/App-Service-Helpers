@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AppServiceHelpers.Abstractions;
 
 namespace FormsSample.ViewModels
@@ -12,6 +12,8 @@ namespace FormsSample.ViewModels
         {
             this.client = client;
             this.todo = todo;
+
+            Title = todo.Id == null ? "Add To Do" : "Edit To Do";
         }
 
         public string Text

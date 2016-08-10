@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AppServiceHelpers;
 
 using FormsSample.Models;
@@ -17,6 +17,8 @@ namespace FormsSample.ViewModels
         public ToDosViewModel(IEasyMobileServiceClient client) : base (client)
         {
             this.client = client;
+
+            Title = "To Do List";
         }
 
         Models.ToDo selectedToDoItem;
