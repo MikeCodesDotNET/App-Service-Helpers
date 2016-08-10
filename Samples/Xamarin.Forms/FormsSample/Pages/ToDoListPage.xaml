@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FormsSample.Pages.ToDoListPage">
 	<ContentPage.Content>
 		<StackLayout>
@@ -9,7 +9,8 @@
 					ItemsSource="{Binding Items}" 
 					SelectedItem="{Binding SelectedToDoItem, Mode=TwoWay}"
 					IsPullToRefreshEnabled="True"
-          			RefreshCommand="{Binding RefreshCommand}">
+					IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+					RefreshCommand="{Binding RefreshCommand}">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
