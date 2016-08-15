@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<?xml version="1.0"?>
+<package >
    <metadata minClientVersion="2.8.1">
        <id>AppService.Helpers</id>
-       <version>1.1.0-pre-release</version>
+       <version>1.1.0-prerelease-2</version>
        <title>App Service Helpers</title>
        <authors>Mike James and Pierce Boggan</authors>
        <owners>Mike James</owners>
@@ -10,8 +10,12 @@
        <projectUrl>https://github.com/MikeCodesDotNet/App-Service-Helpers</projectUrl>
        <requireLicenseAcceptance>false</requireLicenseAcceptance>
        <description>
-        App Service Helpers makes enables you to bring the power of the cloud to your mobile apps. In just four lines of code, App Service Helpers automatically handles backend data access, online/offline synchronization, and even sync conflicts automatically. \n \n For developers building mobile applications with Xamarin.Forms, download the App Service Helpers for Xamarin.Forms to use our preconfigured ViewModel - all you need to do is subclass our view model and data bind away! \n \n For more information and to report feedback, visit us on GitHub at https://github.com/mikecodesdotnet/app-service-helpers
-       </description>
+App Service Helpers (ASH) makes it as easy as possible to add data storage and authentication to your mobile app with Microsoft's Azure App Service Platform. ASH was built with the mobile developer in mind, and requires no previous experience with backends as a service (BaaS).
+
+In just four lines of code, you can connect your app to the cloud with online/offline synchronization and automatic conflict resolution. Authenticating users with Facebook, Twitter, Google, Microsoft accounts, Azure AD, and Azure B2C is dead simple as well - just one line of code. ASH even takes care of securely storing access tokens and refreshing them regularly, with no extra effort required from you.
+
+App Service Helpers was developed as a supplemental library to Microsoft's Azure Client SDK. Rather than replacing this library, ASH extends it by lowering the barrier to entry for developers who wish to build cloud-connected mobile apps in C#. If you ever find yourself outgrowing App Service Helpers, you can drop down to a lower level with the Microsoft Azure Client SDK for fine-tuned control or even remove ASH with minimal refactoring.
+</description>
        <summary>App Service Helpers makes enables you to bring the power of the cloud to your mobile apps.</summary>
        <tags>xamarin, ios, android, azure, app service, connected, mbaas, tables, database, sync</tags>
        <dependencies>
@@ -58,5 +62,4 @@
    <file src="AppServiceHelpers.Ext.Windows/bin/x86/Release/AppServiceHelpers.Ext.dll"
         target="lib\wpa81\AppServiceHelpers.Ext.dll" />
    </files>
- </files>
 </package>
