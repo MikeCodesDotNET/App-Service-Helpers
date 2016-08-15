@@ -16,7 +16,6 @@ namespace AppServiceHelpers.Models
         public DateTimeOffset UpdatedAt { get; set; }
 
         [Version]
-        public string AzureVersion { get; set; }
+        public string Version { get; set; }
     }
 }
-
