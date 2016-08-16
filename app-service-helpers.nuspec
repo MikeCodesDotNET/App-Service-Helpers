@@ -2,7 +2,7 @@
 <package >
    <metadata minClientVersion="2.8.1">
        <id>AppService.Helpers</id>
-       <version>1.1.0-prerelease-2</version>
+       <version>1.1.0-prerelease-4</version>
        <title>App Service Helpers</title>
        <authors>Mike James and Pierce Boggan</authors>
        <owners>Mike James</owners>
@@ -30,7 +30,7 @@ App Service Helpers was developed as a supplemental library to Microsoft's Azure
         property on the table, or subscribe to the delegate method to handle conflicts on a per-occurrence basis.
 
       [1.1.0]
-      -Added ConnectedObservableCollection.
+      -NEW: Easily bind to a cloud-connected collection with ConnectedObservableCollection.
     </releaseNotes>
    </metadata>
    <files>

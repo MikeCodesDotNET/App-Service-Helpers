@@ -51,14 +51,12 @@ namespace AppServiceHelpers
 					// Does not support refresh token concept with server-flow authentication.
 					case MobileServiceAuthenticationProvider.Facebook:
 					case MobileServiceAuthenticationProvider.Twitter:
-					// Supports refresh token concept, but all configuration is server-side.
-					case MobileServiceAuthenticationProvider.MicrosoftAccount:
-						break;
-					case MobileServiceAuthenticationProvider.Google:
+                    // Supports refresh token concept, but all configuration is server-side.
+                    case MobileServiceAuthenticationProvider.MicrosoftAccount:
+                    case MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory:
+                        break;
+                    case MobileServiceAuthenticationProvider.Google:
 						dictionary.Add("access_type", "offline");
-						break;
-					case MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory:
-						dictionary.Add("response_type", "code id_token");
 						break;
 				}
 
