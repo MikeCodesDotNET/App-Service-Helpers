@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,7 +12,7 @@ using Xamarin.Forms;
 
 namespace AppServiceHelpers.Forms
 {
-    public class BaseAzureViewModel<T> where T : EntityData
+    public class BaseAzureViewModel<T> : INotifyPropertyChanged where T : EntityData
     {
         IEasyMobileServiceClient client;
         ITableDataStore<T> table;
