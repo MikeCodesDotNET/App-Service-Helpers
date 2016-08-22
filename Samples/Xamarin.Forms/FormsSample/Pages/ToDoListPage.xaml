@@ -1,5 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FormsSample.Pages.ToDoListPage">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="FormsSample.Pages.ToDoListPage"
+             Title="{Binding Title}">
 	<ContentPage.Content>
 		<StackLayout>
 			<ListView 
@@ -9,13 +10,14 @@
 					ItemsSource="{Binding Items}" 
 					SelectedItem="{Binding SelectedToDoItem, Mode=TwoWay}"
 					IsPullToRefreshEnabled="True"
-          			RefreshCommand="{Binding RefreshCommand}">
+					IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+					RefreshCommand="{Binding RefreshCommand}">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell>
                         	<StackLayout Padding="10" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                             	<Label Text="{Binding Text}" TextColor="#272832" HorizontalOptions="FillAndExpand"/>
-								<Switch IsToggled="{Binding Complete}"/>
+								<Switch IsToggled="{Binding Completed}"/>
                         	</StackLayout>
                     	</ViewCell>
 					</DataTemplate>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AppServiceHelpers;
 
 using FormsSample.Models;
@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using AppServiceHelpers.Abstractions;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using AppServiceHelpers.Forms;
 
 namespace FormsSample.ViewModels
@@ -17,6 +18,8 @@ namespace FormsSample.ViewModels
         public ToDosViewModel(IEasyMobileServiceClient client) : base (client)
         {
             this.client = client;
+
+            Title = "To Do List";
         }
 
         Models.ToDo selectedToDoItem;
@@ -36,6 +39,21 @@ namespace FormsSample.ViewModels
                 }
             }
         }
+
+        private ICommand _addNewItemCommand;
+        public ICommand AddNewItemCommand
+        {
+            get
+            {
+                _addNewItemCommand = _addNewItemCommand ?? new Command(() =>
+                {
+                    var navigation = Application.Current.MainPage as NavigationPage;
+                    navigation.PushAsync(new Pages.ToDoPage(client, new ToDo()));
+                });
+                return _addNewItemCommand;
+            }
+        }
+
     }
 }
 
