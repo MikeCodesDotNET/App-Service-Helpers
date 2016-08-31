@@ -27,7 +27,7 @@ namespace AppServiceHelpers.Authentication
         {
             var sb = new StringBuilder();
 
-            sb.Append("__username_=");
+            sb.Append("__username__=");
             sb.Append(Uri.EscapeDataString(Username));
 
             foreach (var p in Properties)
