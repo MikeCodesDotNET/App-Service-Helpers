@@ -13,7 +13,7 @@ namespace AppServiceHelpers
 {
 	internal class Authenticator : IAuthenticator
 	{
-		private static readonly IAuthenticator instance = new Authenticator();
+		static readonly IAuthenticator instance = new Authenticator();
 		internal static IAuthenticator Instance
 		{
 			get
