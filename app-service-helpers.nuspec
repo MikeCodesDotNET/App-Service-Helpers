@@ -2,7 +2,7 @@
 <package >
    <metadata minClientVersion="2.8.1">
        <id>AppService.Helpers</id>
-       <version>1.1.0-prerelease-4</version>
+       <version>1.1.0-prerelease-5</version>
        <title>App Service Helpers</title>
        <authors>Mike James and Pierce Boggan</authors>
        <owners>Mike James</owners>
@@ -16,21 +16,16 @@ In just four lines of code, you can connect your app to the cloud with online/of
 
 App Service Helpers was developed as a supplemental library to Microsoft's Azure Client SDK. Rather than replacing this library, ASH extends it by lowering the barrier to entry for developers who wish to build cloud-connected mobile apps in C#. If you ever find yourself outgrowing App Service Helpers, you can drop down to a lower level with the Microsoft Azure Client SDK for fine-tuned control or even remove ASH with minimal refactoring.
 </description>
-       <summary>App Service Helpers makes enables you to bring the power of the cloud to your mobile apps.</summary>
-       <tags>xamarin, ios, android, azure, app service, connected, mbaas, tables, database, sync</tags>
+       <summary>App Service Helpers makes it as easy as possible to build cloud-connected apps.</summary>
+       <tags>xamarin, ios, android, mac, uwp, azure, microsoft, app service, connected, mbaas, tables, database, sync</tags>
        <dependencies>
           <group targetFramework=".NETFramework4.5">
-            <dependency id="Microsoft.Azure.Mobile.Client.SQLiteStore" version="2.1.0" />
+            <dependency id="Microsoft.Azure.Mobile.Client.SQLiteStore" version="3.0.0-beta" />
           </group>
        </dependencies>
     <releaseNotes>
-      [1.1.1]
-      -NEW: One line authentication for Facebook, Twitter, Google, MSA, and Azure AD. We even secure store authentication tokens and manage token refresh scenarios automatically for you.
-      -NEW: Handle conflicts that occur between your local data store and the server with our ConflictResolutionStrategy. Control on a per-table basis by setting the ConflictResolutionStrategy
-        property on the table, or subscribe to the delegate method to handle conflicts on a per-occurrence basis.
-
-      [1.1.0]
-      -NEW: Easily bind to a cloud-connected collection with ConnectedObservableCollection.
+    Keep up with the latest from App Service Helpers with our changelog on GitHub:
+    https://github.com/MikeCodesDotNet/App-Service-Helpers/blob/release-1.1.0/CHANGELOG.md
     </releaseNotes>
    </metadata>
    <files>
@@ -48,11 +43,10 @@ App Service Helpers was developed as a supplemental library to Microsoft's Azure
    <file src="AppServiceHelpers.Ext.iOS/bin/Release/AppServiceHelpers.Ext.dll"
         target="lib\MonoTouch10\AppServiceHelpers.Ext.dll" />
   
-   <!-- UWP -->
+   <!-- UWP 
    <file src="AppServiceHelpers.Ext.UWP/bin/x86/Release/AppServiceHelpers.Ext.dll"
         target="lib\UAP10\AppServiceHelpers.Ext.dll" />
    
-   <!-- Windows RT-->
    <file src="AppServiceHelpers.Ext.Windows/bin/x86/Release/AppServiceHelpers.Ext.dll"
         target="lib\win8\AppServiceHelpers.Ext.dll" />
    
@@ -61,5 +55,6 @@ App Service Helpers was developed as a supplemental library to Microsoft's Azure
      
    <file src="AppServiceHelpers.Ext.Windows/bin/x86/Release/AppServiceHelpers.Ext.dll"
         target="lib\wpa81\AppServiceHelpers.Ext.dll" />
+        -->
    </files>
 </package>
