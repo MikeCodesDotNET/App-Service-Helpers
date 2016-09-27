@@ -20,6 +20,7 @@ namespace AppServiceHelpers
 		public static void Init(Context context)
 		{
 			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+            SQLitePCL.Batteries.Init();
 
 			Context = context;
 		}

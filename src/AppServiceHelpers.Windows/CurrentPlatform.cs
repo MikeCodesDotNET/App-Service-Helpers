@@ -15,6 +15,7 @@ namespace AppServiceHelpers
 
         public static void Init()
         {
+            SQLitePCL.Batteries.Init();
         }
     }
 }
