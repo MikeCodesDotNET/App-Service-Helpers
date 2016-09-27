@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AppServiceHelpers.Authentication
 {
     public class Account
     {
+        public Account()
+        {
+
+        }
         public Account(string username, IDictionary<string, string> properties)
         {
             Username = username;
             Properties = (properties == null) ? new Dictionary<string, string>() : new Dictionary<string, string>(properties);
-        }
-
-        public Account()
-        {
-
         }
 
         public virtual string Username { get; set; }
