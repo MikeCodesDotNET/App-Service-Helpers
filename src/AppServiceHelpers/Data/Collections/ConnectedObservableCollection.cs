@@ -6,11 +6,10 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 
-using AppServiceHelpers.Abstractions;
-using AppServiceHelpers.Helpers;
-using AppServiceHelpers.Models;
+using AppServiceHelpers.Data.Models;
+using AppServiceHelpers.Data.Tables;
 
-namespace AppServiceHelpers.Helpers
+namespace AppServiceHelpers.Data.Collections
 {
 	public class ConnectedObservableCollection<T> : ObservableRangeCollection<T> where T : EntityData
 	{

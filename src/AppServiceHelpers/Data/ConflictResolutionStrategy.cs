@@ -1,5 +1,6 @@
 ﻿using System;
-namespace AppServiceHelpers
+
+namespace AppServiceHelpers.Data
 {
 	public enum ConflictResolutionStrategy
 	{

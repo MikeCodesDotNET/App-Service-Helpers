@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppServiceHelpers
+namespace AppServiceHelpers.Authentication
 {
     public interface IAccountStore
     {

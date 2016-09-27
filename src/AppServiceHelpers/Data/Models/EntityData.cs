@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System;
 
-namespace AppServiceHelpers.Models
+namespace AppServiceHelpers.Data.Models
 {
     public class EntityData
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AppServiceHelpers.Utils
+namespace AppServiceHelpers.Utilities
 {
     /// <summary>
     ///     Simple ServiceLocator implementation.

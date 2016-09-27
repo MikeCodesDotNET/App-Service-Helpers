@@ -1,15 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+
 using Microsoft.WindowsAzure.MobileServices;
-using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
-using Microsoft.WindowsAzure.MobileServices.Sync;
 
-using AppServiceHelpers.Abstractions;
-using AppServiceHelpers.Models;
-using AppServiceHelpers.Tables;
-using AppServiceHelpers.Utils;
+using AppServiceHelpers.Data.Tables;
+using AppServiceHelpers.Data.Models;
 
-namespace AppServiceHelpers.Abstractions
+namespace AppServiceHelpers
 {
 	public interface IEasyMobileServiceClient
 	{

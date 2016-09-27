@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.WindowsAzure.MobileServices;
 
-namespace AppServiceHelpers.Abstractions
+namespace AppServiceHelpers.Data.Tables
 {
     public interface ITableDataStore<T>
     {

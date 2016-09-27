@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Microsoft.WindowsAzure.MobileServices;
 
-namespace AppServiceHelpers
+namespace AppServiceHelpers.Authentication
 {
 	public interface IAuthenticator
 	{

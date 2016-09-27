@@ -5,10 +5,10 @@ using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 
-using AppServiceHelpers.Abstractions;
-using AppServiceHelpers.Models;
-using AppServiceHelpers.Tables;
-using AppServiceHelpers.Utils;
+using AppServiceHelpers.Authentication;
+using AppServiceHelpers.Data.Models;
+using AppServiceHelpers.Data.Tables;
+using AppServiceHelpers.Utilities;
 
 namespace AppServiceHelpers
 {
@@ -179,7 +179,7 @@ namespace AppServiceHelpers
 		#region Authentication
 		public async Task<bool> LoginAsync(MobileServiceAuthenticationProvider provider)
 		{
-			var authenticator = Platform.Instance.Authenticator;
+			var authenticator = Platform.Platform.Instance.Authenticator;
 
 			return await authenticator.LoginAsync(MobileService, provider);
 		}
@@ -187,7 +187,7 @@ namespace AppServiceHelpers
 
 		void LoadCachedUserCredentials()
 		{
-			var authenticator = Platform.Instance.Authenticator;
+			var authenticator = Platform.Platform.Instance.Authenticator;
 			var credentials = authenticator.LoadCachedUserCredentials();
 
 			if (credentials != null 

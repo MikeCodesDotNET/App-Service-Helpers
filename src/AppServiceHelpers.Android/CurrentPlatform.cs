@@ -1,5 +1,7 @@
 ﻿using Android.Content;
 
+using AppServiceHelpers.Authentication;
+using AppServiceHelpers.Platform;
 
 namespace AppServiceHelpers
 {

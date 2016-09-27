@@ -1,6 +1,6 @@
-﻿using System;
+﻿using AppServiceHelpers.Authentication;
 
-namespace AppServiceHelpers
+namespace AppServiceHelpers.Platform
 {
 	public interface IPlatform
 	{

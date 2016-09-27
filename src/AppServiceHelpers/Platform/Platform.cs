@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Reflection;
 
-namespace AppServiceHelpers
+namespace AppServiceHelpers.Platform
 {
 	public static class Platform
 	{

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 using Microsoft.WindowsAzure.MobileServices;
 
-namespace AppServiceHelpers
+using AppServiceHelpers.Platform;
+
+namespace AppServiceHelpers.Authentication
 {
 	public class AuthenticationHandler : DelegatingHandler
 	{
@@ -36,7 +38,7 @@ namespace AppServiceHelpers
 					if (response.StatusCode == HttpStatusCode.Unauthorized)
 					{
 						// Was the user previously authenticated, at any time?
-						var authenticator = Platform.Instance.Authenticator;
+						var authenticator = Platform.Platform.Instance.Authenticator;
 						if (authenticator.UserPreviouslyAuthenticated)
 						{
 							var provider = authenticator.FindIdentityProvider();

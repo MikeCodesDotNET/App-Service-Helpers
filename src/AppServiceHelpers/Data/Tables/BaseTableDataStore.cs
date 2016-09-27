@@ -1,19 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 
-using AppServiceHelpers.Abstractions;
+using AppServiceHelpers;
+using AppServiceHelpers.Data.Tables;
 
-namespace AppServiceHelpers.Tables
+namespace AppServiceHelpers.Data.Tables
 {
 	public delegate ConflictResolutionStrategy ResolveConflictDelegate<T>(T localVersion, T serverVersion);
 
-	public abstract class BaseTableDataStore
-	{
-	}
+    public abstract class BaseTableDataStore { }
 
 	public class BaseTableDataStore<T> : BaseTableDataStore, ITableDataStore<T> where T : Models.EntityData
     {

@@ -1,5 +1,7 @@
 ﻿using System;
-using AppServiceHelpers.Utils;
+
+using AppServiceHelpers.Authentication;
+using AppServiceHelpers.Platform;
 
 namespace AppServiceHelpers
 {
