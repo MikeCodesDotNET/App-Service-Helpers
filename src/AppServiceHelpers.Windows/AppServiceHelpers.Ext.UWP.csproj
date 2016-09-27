@@ -116,7 +116,7 @@
     <EmbeddedResource Include="Properties\AppServiceHelpers.Ext.UWP.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppServiceHelpers.Mobile\AppServiceHelpers.csproj">
+    <ProjectReference Include="..\AppServiceHelpers\AppServiceHelpers.csproj">
       <Project>{33f1e859-a0a4-499b-b4eb-e23adae53621}</Project>
       <Name>AppServiceHelpers</Name>
     </ProjectReference>
