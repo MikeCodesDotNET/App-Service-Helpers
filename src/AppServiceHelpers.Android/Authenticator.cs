@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.WindowsAzure.MobileServices;
-using Xamarin.Auth;
+
 using AppServiceHelpers.Authentication;
-using System.Linq;
 
 namespace AppServiceHelpers
 {
@@ -40,7 +40,9 @@ namespace AppServiceHelpers
                         break;
 					// Supports refresh token concept, but all configuration is server-side.
 					case MobileServiceAuthenticationProvider.MicrosoftAccount:
+                    // Supports refresh token concept.
                     case MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory:
+                        dictionary.Add("response_type", "code id_token");
                         break;
                     case MobileServiceAuthenticationProvider.Google:
 						dictionary.Add("access_type", "offline");

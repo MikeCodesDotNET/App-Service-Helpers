@@ -36,9 +36,10 @@ namespace AppServiceHelpers
 					case MobileServiceAuthenticationProvider.Twitter:
                     // Supports refresh token concept, but all configuration is server-side.
                     case MobileServiceAuthenticationProvider.MicrosoftAccount:
+                    // Supports refresh token concept.
                     case MobileServiceAuthenticationProvider.WindowsAzureActiveDirectory:
+                        dictionary.Add("response_type", "code id_token");
                         break;
-                    // Supports refresh token concept, but need to add additional scopes.
                     case MobileServiceAuthenticationProvider.Google:
 						dictionary.Add("access_type", "offline");
 						break;
