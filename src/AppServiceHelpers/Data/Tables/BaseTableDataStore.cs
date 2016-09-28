@@ -4,9 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
 
-using AppServiceHelpers;
-using AppServiceHelpers.Data.Tables;
-
 namespace AppServiceHelpers.Data.Tables
 {
 	public delegate ConflictResolutionStrategy ResolveConflictDelegate<T>(T localVersion, T serverVersion);
@@ -16,15 +13,12 @@ namespace AppServiceHelpers.Data.Tables
 	public class BaseTableDataStore<T> : BaseTableDataStore, ITableDataStore<T> where T : Models.EntityData
     {
 		IEasyMobileServiceClient serviceClient;
-        string identifier = typeof(T).Name;
+        readonly string identifier = typeof(T).Name;
 
         IMobileServiceSyncTable<T> table;
-        protected IMobileServiceSyncTable<T> Table
-        {
-			get { return table ?? (table = serviceClient.MobileService.GetSyncTable<T>()); }
-        }
+        protected IMobileServiceSyncTable<T> Table => table ?? (table = serviceClient.MobileService.GetSyncTable<T>());
 
-		public ConflictResolutionStrategy ConflictResolutionStrategy { get; set; }
+        public ConflictResolutionStrategy ConflictResolutionStrategy { get; set; }
 		public ResolveConflictDelegate<T> ConflictResolutionStrategyDelegate { get; set; }
 
 		public virtual void Initialize(IEasyMobileServiceClient client)
@@ -32,13 +26,17 @@ namespace AppServiceHelpers.Data.Tables
 			serviceClient = client;
 		}
 
-        public async virtual Task Sync()
+        public virtual async Task Sync()
         {
+            var connected = Plugin.Connectivity.CrossConnectivity.Current.IsConnected;
+            if (!connected)
+                return;
+
 			await serviceClient.MobileService.SyncContext.PushAsync();
 			await Table.PullAsync($"all{identifier}", Table.CreateQuery());
         }
 
-        public async virtual Task<bool> AddAsync(T item)
+        public virtual async Task<bool> AddAsync(T item)
         {
 			try
 			{
@@ -56,7 +54,7 @@ namespace AppServiceHelpers.Data.Tables
             return true;
         }
 
-        public async virtual Task<bool> UpdateAsync(T item)
+        public virtual async Task<bool> UpdateAsync(T item)
         {
 			try
 			{
@@ -74,7 +72,7 @@ namespace AppServiceHelpers.Data.Tables
             return true;
         }
 
-        public async virtual Task<bool> DeleteAsync(T item)
+        public virtual async Task<bool> DeleteAsync(T item)
         {
 			try
 			{
@@ -92,7 +90,7 @@ namespace AppServiceHelpers.Data.Tables
             return true;
         }
 
-        public async virtual Task<T> GetItemAsync(string id)
+        public virtual async Task<T> GetItemAsync(string id)
         {
             await Sync();
 
@@ -104,7 +102,7 @@ namespace AppServiceHelpers.Data.Tables
             return items[0];
         }
 
-        public async virtual Task<IEnumerable<T>> GetItemsAsync()
+        public virtual async Task<IEnumerable<T>> GetItemsAsync()
         {
             await Sync();
 
