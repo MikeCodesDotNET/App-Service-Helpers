@@ -33,7 +33,7 @@ namespace FormsSample
 			{
 				await client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Facebook);
 
-			    var navigationPage = App.Current.MainPage as NavigationPage;
+                var navigationPage = App.Current.MainPage as NavigationPage;
 			    if (navigationPage != null)
 			    {
 			        var todos = new Pages.ToDoListPage();

@@ -57,7 +57,7 @@ namespace FormsSample.ViewModels
 			get { return addNewItemCommand ?? (addNewItemCommand = new Command(async () => await ExecuteAddNewItemCommandAsync())); }
 		}
 
-		async Task ExecuteAddNewItemCommandAsync()
+        private async Task ExecuteAddNewItemCommandAsync()
 		{
 			if (IsBusy)
 				return;
@@ -66,10 +66,10 @@ namespace FormsSample.ViewModels
 
 			try
 			{
-				Todos.Add(new ToDo
+				await Todos.Add(new ToDo
 				{
-					Text = DateTime.Now.ToString(),
-					Completed = false
+				    Text = DateTime.Now.ToString(),
+				    Completed = false
 				});
 			}
 			catch (Exception ex)
