@@ -13,7 +13,7 @@ namespace FormsSample
         {
             InitializeComponent();
 
-            EasyMobileServiceClient.Current.Initialize("https://todoitems.azurewebsites.net");
+            EasyMobileServiceClient.Current.Initialize("http://xamarin-todo-sample.azurewebsites.net");
             EasyMobileServiceClient.Current.RegisterTable<ToDo>();
             EasyMobileServiceClient.Current.FinalizeSchema();
 

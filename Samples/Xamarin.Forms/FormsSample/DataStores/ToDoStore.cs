@@ -1,5 +1,5 @@
 ﻿using System;
-using AppServiceHelpers.Tables;
+using AppServiceHelpers.Data.Tables;
 using FormsSample.Models;
 
 namespace FormsSample.DataStores

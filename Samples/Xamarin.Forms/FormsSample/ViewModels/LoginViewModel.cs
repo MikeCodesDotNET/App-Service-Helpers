@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
-
+using AppServiceHelpers;
 using FormsSample.ViewModels;
 
-using AppServiceHelpers.Abstractions;
-using AppServiceHelpers.Helpers;
 using Xamarin.Forms;
 
 namespace FormsSample
 {
 	public class LoginViewModel : BaseViewModel
 	{
-		IEasyMobileServiceClient client;
+	    private readonly IEasyMobileServiceClient client;
 
 		public LoginViewModel()
 		{
-            this.client = AppServiceHelpers.EasyMobileServiceClient.Current;
+            client = EasyMobileServiceClient.Current;
 		}
 
 		Command loginCommand;
@@ -34,6 +32,13 @@ namespace FormsSample
 			try
 			{
 				await client.LoginAsync(Microsoft.WindowsAzure.MobileServices.MobileServiceAuthenticationProvider.Facebook);
+
+			    var navigationPage = App.Current.MainPage as NavigationPage;
+			    if (navigationPage != null)
+			    {
+			        var todos = new Pages.ToDoListPage();
+			        await navigationPage.PushAsync(todos);
+			    }
 			}
 			catch (Exception ex)
 			{

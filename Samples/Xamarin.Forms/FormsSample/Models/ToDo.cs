@@ -1,5 +1,5 @@
 ﻿using System;
-using AppServiceHelpers.Models;
+using AppServiceHelpers.Data.Models;
 
 namespace FormsSample.Models
 {

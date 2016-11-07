@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AppServiceHelpers;
-
 using FormsSample.Models;
-
-using AppServiceHelpers.Abstractions;
-using AppServiceHelpers.Helpers;
 using Xamarin.Forms;
+
+using AppServiceHelpers.Data.Collections;
 
 namespace FormsSample.ViewModels
 {

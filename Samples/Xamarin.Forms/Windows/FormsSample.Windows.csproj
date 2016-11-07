@@ -129,11 +129,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\AppServiceHelpers.Ext.UWP\AppServiceHelpers.Ext.UWP.csproj">
+    <ProjectReference Include="..\..\..\src\AppServiceHelpers.Windows\AppServiceHelpers.Ext.UWP.csproj">
       <Project>{4bd7140c-ed1f-402a-9108-30ace9b5ea86}</Project>
       <Name>AppServiceHelpers.Ext.UWP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\AppServiceHelpers.Mobile\AppServiceHelpers.csproj">
+    <ProjectReference Include="..\..\..\src\AppServiceHelpers\AppServiceHelpers.csproj">
       <Project>{33f1e859-a0a4-499b-b4eb-e23adae53621}</Project>
       <Name>AppServiceHelpers</Name>
     </ProjectReference>

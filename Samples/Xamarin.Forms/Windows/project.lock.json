@@ -3,7 +3,7 @@
   "version": 1,
   "targets": {
     "UAP,Version=v10.0": {
-      "Microsoft.Azure.Mobile.Client/2.1.0": {
+      "Microsoft.Azure.Mobile.Client/3.0.3": {
         "dependencies": {
           "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
@@ -1868,7 +1868,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
-      "Microsoft.Azure.Mobile.Client/2.1.0": {
+      "Microsoft.Azure.Mobile.Client/3.0.3": {
         "dependencies": {
           "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
@@ -3594,7 +3594,7 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
-      "Microsoft.Azure.Mobile.Client/2.1.0": {
+      "Microsoft.Azure.Mobile.Client/3.0.3": {
         "dependencies": {
           "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
@@ -5278,7 +5278,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
-      "Microsoft.Azure.Mobile.Client/2.1.0": {
+      "Microsoft.Azure.Mobile.Client/3.0.3": {
         "dependencies": {
           "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
@@ -7012,7 +7012,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
-      "Microsoft.Azure.Mobile.Client/2.1.0": {
+      "Microsoft.Azure.Mobile.Client/3.0.3": {
         "dependencies": {
           "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
@@ -8696,7 +8696,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
-      "Microsoft.Azure.Mobile.Client/2.1.0": {
+      "Microsoft.Azure.Mobile.Client/3.0.3": {
         "dependencies": {
           "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
@@ -10430,7 +10430,7 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
-      "Microsoft.Azure.Mobile.Client/2.1.0": {
+      "Microsoft.Azure.Mobile.Client/3.0.3": {
         "dependencies": {
           "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
@@ -12115,11 +12115,12 @@
     }
   },
   "libraries": {
-    "Microsoft.Azure.Mobile.Client/2.1.0": {
-      "sha512": "2oKsqtmJ9S6+oCQSa/zTc53B5F2gnPmXmPm68IX1LehNG7wO5m2aq/CkMWOO4HW+6S+hPNCePYcZRagjvcLkRQ==",
+    "Microsoft.Azure.Mobile.Client/3.0.3": {
+      "sha512": "7JoZIO+zC8LpD9/Pi5cKa1tq+0ujTQeZpxFZmMXz7x6ma2kpTfIUE7WFKIwt3l7z9T4FyHfKlX8/tqjO9ObR2A==",
       "type": "package",
+      "path": "Microsoft.Azure.Mobile.Client/3.0.3",
       "files": [
-        "Microsoft.Azure.Mobile.Client.2.1.0.nupkg.sha512",
+        "Microsoft.Azure.Mobile.Client.3.0.3.nupkg.sha512",
         "Microsoft.Azure.Mobile.Client.nuspec",
         "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.Ext.dll",
         "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.Ext.xml",
@@ -15894,7 +15895,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Microsoft.Azure.Mobile.Client >= 2.1.0",
+      "Microsoft.Azure.Mobile.Client >= 3.0.3",
       "Microsoft.Azure.Mobile.Client.SQLiteStore >= 2.1.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.1.0",
       "Xamarin.Forms >= 2.2.0.45"
