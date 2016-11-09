@@ -55,7 +55,9 @@ namespace AppServiceHelpers
 			if (initialized)
 				return;
 
-			Url = url;
+            var platform = Platform.Platform.Instance;
+
+            Url = url;
 
 			store = new MobileServiceSQLiteStore("app.db");
 

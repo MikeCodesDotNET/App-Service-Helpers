@@ -14,12 +14,10 @@ namespace FormsSample.iOS
     {
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            AppServiceHelpers.CurrentPlatform.Init();
+
             global::Xamarin.Forms.Forms.Init();
-
             LoadApplication(new App());
-
-			AppServiceHelpers.CurrentPlatform.Init();
-
             return base.FinishedLaunching(app, options);
         }
     }
