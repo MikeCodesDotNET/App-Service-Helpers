@@ -2,7 +2,7 @@
 <package >
    <metadata minClientVersion="2.8.1">
        <id>AppService.Helpers</id>
-       <version>1.1.0-prerelease-5</version>
+       <version>1.1.0-prerelease-10</version>
        <title>App Service Helpers</title>
        <authors>Mike James and Pierce Boggan</authors>
        <owners>Mike James</owners>
@@ -20,7 +20,7 @@ App Service Helpers was developed as a supplemental library to Microsoft's Azure
        <tags>xamarin, ios, android, mac, uwp, azure, microsoft, app service, connected, mbaas, tables, database, sync</tags>
        <dependencies>
           <group targetFramework=".NETFramework4.5">
-            <dependency id="Microsoft.Azure.Mobile.Client.SQLiteStore" version="3.0.0-beta" />
+            <dependency id="Microsoft.Azure.Mobile.Client.SQLiteStore" version="3.0.3" />
           </group>
        </dependencies>
     <releaseNotes>
