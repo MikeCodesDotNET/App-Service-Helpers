@@ -14,9 +14,9 @@ App Service Helpers was developed as a supplemental library to [Microsoft's Azur
 
 1. Add Nuget Package
 
-   ```bash
-   Install-Package AppService.Helpers
-   ```
+```bash
+Install-Package AppService.Helpers
+```
 2. Intialise
 ```csharp
 var client = new EasyMobileServiceClient();
