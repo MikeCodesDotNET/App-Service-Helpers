@@ -20,6 +20,8 @@ App Service Helpers was developed as a supplemental library to [Microsoft's Azur
 
 ## Quick Start 
 
+The most basic usage of the library can be achieved with just 4 lines of code. Below shows how to do this in the context of a To Do app. 
+
 1. Add Nuget Package
 
 ```bash
@@ -32,7 +34,6 @@ client.Initialize("YOUR_AZURE_URL_GOES_HERE");
 
 //Register our objects
 client.RegisterTable<ToDo>();
-client.RegisterTable<User>();
 client.FinalizeSchema();
 ```
 3. Using
@@ -40,9 +41,7 @@ You can now create a ConnectedObservableCollection of your type for use in datab
 
 ```csharp
 var Todos = new ConnectedObservableCollection<ToDo>(client.Table<ToDo>());
-var Users = new ConnectedObservableCollection<User>(client.Table<User>());
 ```
-
 
 ## Learn More with Docs! 
 You can find a compresentive set of docs over at [Readme.io](https://ashlibrary.readme.io/docs)
