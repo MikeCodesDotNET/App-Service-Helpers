@@ -13,6 +13,8 @@ Resource.Designer.cs
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+#Vue distrubtion 
+docs/.vuepress/dist
 #macOS 
 .DS_Store
 
