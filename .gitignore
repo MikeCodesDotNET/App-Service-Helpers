@@ -28,6 +28,9 @@ bld/
 # Visual Studo 2015 cache/options directory
 .vs/
 
+# MFactor
+.mfractor/
+
 #Components
 [C]omponents/
 
