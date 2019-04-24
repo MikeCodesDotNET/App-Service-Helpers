@@ -52,6 +52,7 @@ You can find a compresentive set of [docs](https://appservicehelpersdocs.z6.web.
 - [Azure Mobile Apps](https://docs.microsoft.com/en-us/azure/app-service-mobile/?WT.mc_id=ashpackage-github-mijam)
 - [Xamarin Docs](https://docs.microsoft.com/en-us/xamarin/?WT.mc_id=ashpackage-github-mijam)
 - [Azure App Service Platform](https://azure.microsoft.com/en-us/services/app-service/mobile/?WT.mc_id=ashpackage-github-mijam)
+- [Nuget Package](https://www.nuget.org/packages/AppService.Helpers/)
 
 ## Problems or Suggestions
 [Open an issue here](../..//issues)
