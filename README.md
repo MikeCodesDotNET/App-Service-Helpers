@@ -55,7 +55,7 @@ You can find a compresentive set of docs over at [Readme.io](https://ashlibrary.
 - [Azure App Service Platform](https://azure.microsoft.com/en-us/services/app-service/mobile/?WT.mc_id=ashpackage-github-mijam)
 
 ## Problems or Suggestions
-[Open an issue here](/issues)
+[Open an issue here](../..//issues)
 
 ## License
 Licensed under MIT see License file.
