@@ -1,9 +1,6 @@
-# App Service Helpers. 
+![App Service Helpers Banner](assets/readmeBanner.png)
 
-> **TLDR** Add online/offline synchronization to [Xamarin](https://docs.microsoft.com/en-us/xamarin/?WT.mc_id=ashpackage-github-mijam) apps with just 4 lines of code. 
-
----
-
+# App Service Helpers 
 App Service Helpers (ASH) makes it as easy as possible to add data storage with sync support to your Xamarin based mobile apps with [Microsoft's Azure App Service Platform](https://azure.microsoft.com/en-us/services/app-service/mobile/?WT.mc_id=ashpackage-github-mijam). ASH was built with the mobile developer in mind and requires no previous experience with developing backend infrastructure. Its entire
 purpose is to allow you to focus on the mobile app! 
 
