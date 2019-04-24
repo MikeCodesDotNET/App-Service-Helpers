@@ -46,7 +46,7 @@ var Todos = new ConnectedObservableCollection<ToDo>(client.Table<ToDo>());
 ```
 
 ## Learn More with Docs! 
-You can find a compresentive set of docs over at [Readme.io](https://ashlibrary.readme.io/docs)
+You can find a compresentive set of [docs](https://appservicehelpersdocs.z6.web.core.windows.net/) created using VuePress & hosted using Azure Storage Static sites.
 
 ### More Resources
 - [Azure Mobile Apps](https://docs.microsoft.com/en-us/azure/app-service-mobile/?WT.mc_id=ashpackage-github-mijam)
