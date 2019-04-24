@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>AppService.Helpers</id>
+    <version>1.5.1</version>
+    <authors>App Service Helpers</authors>
+    <owners>Mike James and Pierce Boggan</owners>
+    <licenseUrl>https://github.com/MikeCodesDotNet/App-Service-Helpers</licenseUrl>
+    <projectUrl>https://github.com/mikecodesdotnet/app-service-helpers</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>
+      App Service Helpers helps you bring the power of the cloud to your mobile apps. In just four lines of code, App Service Helpers automatically handles backend data access, online/offline synchronisation, and even sync conflicts automatically.   For more information and to report feedback, visit us on GitHub at https://github.com/mikecodesdotnet/app-service-helpers     </description>
+    <releaseNotes>
+      Updated package to support .NET Standard 1.4 and bumped dependency versions to latest. 
+    </releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>xamarin, ios, android, azure, app service, connected, mbaas, tables, database, sync</tags>    
+    <dependencies>
+        <dependency id="Microsoft.Azure.Mobile.Client.SQLiteStore" version="4.1.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Azure.Mobile\bin\Release\netstandard1.4\Azure.Mobile.Standard.dll" target="lib\netstandard1.4\Azure.Mobile.Standard.dll" />
+</files>
+</package> 

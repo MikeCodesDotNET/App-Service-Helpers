@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Azure.Mobile.Sample.Pages.ToDosPage">
+    
+    <ContentPage.Content>
+            <StackLayout>
+            <ListView 
+                    BackgroundColor="#F7F7F7" 
+                    RowHeight="50" 
+                    CachingStrategy="RecycleElement" 
+                    ItemsSource="{Binding ToDos}" 
+                    SelectedItem="{Binding SelectedToDoItem, Mode=TwoWay}"
+                    IsPullToRefreshEnabled="True"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    RefreshCommand="{Binding RefreshCommand}">
+                
+                <!-- Custom ListView Cell -->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout 
+                                Padding="10" 
+                                Orientation="Horizontal" 
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="CenterAndExpand">
+                                    <Label 
+                                        Text="{Binding Text}" 
+                                        TextColor="#272832" 
+                                        HorizontalOptions="FillAndExpand"/>
+                                    <Switch IsToggled="{Binding Completed}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+            </ListView>
+            
+            <!-- Add new Item Button -->
+            <Button 
+                Text="Add New"
+                BackgroundColor="#A6E55E" 
+                TextColor="White" 
+                Command="{Binding AddNewItemCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
