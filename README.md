@@ -59,7 +59,7 @@ Developed by former Xamarin employees, now working for Microsoft.
 |                 **Mike James**                 |            **Pierce Boggan**            |
 |  [GitHub](https://github.com/MikeCodesDotNet)  | [GitHub](https://github.com/pierceboggan) |
 | [Twitter](https://twitter.com/MikeCodesDotNet) | [Twitter](https://twitter.com/pierceboggan)  |
-|         
+        
 
 ## License
 Licensed under MIT see License file.
