@@ -4,8 +4,6 @@
 App Service Helpers (ASH) makes it as easy as possible to add data storage with sync support to your Xamarin based mobile apps with [Microsoft's Azure App Service Platform](https://azure.microsoft.com/en-us/services/app-service/mobile/?WT.mc_id=ashpackage-github-mijam). ASH was built with the mobile developer in mind and requires no previous experience with developing backend infrastructure. Its entire
 purpose is to allow you to focus on the mobile app! 
 
-by [Mike James](http://twitter.com/mikecodesdotnet) & [Pierce Boggan](https://twitter.com/pierceboggan)
-
 ## Why
 ASH removes a lot of complexitities of developing cloud connected apps by allowing you to add online/offline synchronization functionality to apps in just four lines of code. Because ASH is an abstraction API, its even possible to Authenticate users with Facebook, Twitter, Google, Microsoft accounts, Azure AD, and even Azure B2C. ASH even takes care of securely storing access tokens and refreshing them regularly,with no extra effort required from you.
 
@@ -52,6 +50,16 @@ You can find a compresentive set of docs over at [Readme.io](https://ashlibrary.
 
 ## Problems or Suggestions
 [Open an issue here](../..//issues)
+
+## Authors
+Developed by former Xamarin employees, now working for Microsoft.
+
+|        ![Photo](assets/mike.png)       |   ![Photo](assets/pierce.png)   |
+|:----------------------------------------------:|:--------------------------------------------:|
+|                 **Mike James**                 |            **Pierce Boggan**            |
+|  [GitHub](https://github.com/MikeCodesDotNet)  | [GitHub](https://github.com/pierceboggan) |
+| [Twitter](https://twitter.com/MikeCodesDotNet) | [Twitter](https://twitter.com/pierceboggan)  |
+|         
 
 ## License
 Licensed under MIT see License file.
